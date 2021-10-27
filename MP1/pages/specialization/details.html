@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Klinika Demo</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+<header>
+    <h1>Klinika</h1>
+    <img src="images/logo.png" alt="Logo Kliniki">
+</header>
+<nav>
+    <ul>
+        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="pages/doctor/list.html">Lekarze</a></li>
+        <li><a href="pages/patient/list.html">Pacjenci</a></li>
+        <li><a href="pages/specialization/list.html" class="active">Specjalizacje</a></li>
+        <li><a href="pages/appointment/list.html">Wizyty</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Szczegóły specjalizacji</h2>
+    <form>
+        <label for="specialization_name">Nazwa specjalizacji: *</label>
+        <input type="text" name="specialization_name" id="specialization_name" value="Pediatra" required disabled>
+        <span id="errorSpecializationName"></span>
+        <div>
+            <a href="form-edit.html">Edytuj</a>
+        </div>
+    </form>
+</main>
+<footer>
+    Borys, Kotnowski, s20610
+</footer>
+</body>
+</html>
