@@ -42,11 +42,11 @@ nav ul li a {
     text-decoration: none;
 }
 nav ul li a:hover {
-    background-color: #d35400;
+    background-color: #9783AF;
     color: #ecf0f1;
 }
 nav ul li a.active {
-    background-color: #95a5a6;
+    background-color: #463857;
     color: #ecf0f1;
 }
 main {

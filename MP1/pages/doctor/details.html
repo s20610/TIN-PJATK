@@ -14,14 +14,14 @@
 <nav>
     <ul>
         <li><a href="../../index.html">Strona główna</a></li>
-        <li><a href="pages/doctor/list.html" class="active">Lekarze</a></li>
-        <li><a href="pages/patient/list.html">Pacjenci</a></li>
-        <li><a href="pages/appointment/list.html">Wizyty</a></li>
+        <li><a href="list.html" class="active">Lekarze</a></li>
+        <li><a href="../patient/list.html">Pacjenci</a></li>
+        <li><a href="../appointment/list.html">Wizyty</a></li>
     </ul>
 </nav>
 <main>
     <h2>Szczegóły lekarza</h2>
-    <form>
+    <form class="form">
         <label for="firstName">Imię: *</label>
         <input type="text" name="firstName" id="firstName" value="Jan" required disabled>
         <span id="errorFirstName"></span>
@@ -47,7 +47,7 @@
         </div>
     </form>
     <h2>Szczegóły wizyt</h2>
-    <table>
+    <table class="table-list">
         <tr>
             <th>Data wizyty</th>
             <th>Recepta</th>
