@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Klinika Demo</title>
+    <link rel="stylesheet" href="G:\Mój dysk\Foldery przedmiotów\TIN\MP1\css\style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+<header>
+    <h1>Klinika</h1>
+    <img src="G:/Mój dysk/Foldery przedmiotów/TIN/MP1/images/logo.png" alt="Logo Kliniki">
+</header>
+<nav>
+    <ul>
+        <li><a href="G:\Mój dysk\Foldery przedmiotów\TIN\MP1\index.html">Strona główna</a></li>
+        <li><a href="G:\Mój dysk\Foldery przedmiotów\TIN\MP1\pages\doctor\list.html">Lekarze</a></li>
+        <li><a href="G:\Mój dysk\Foldery przedmiotów\TIN\MP1\pages\patient\list.html">Pacjenci</a></li>
+        <li><a href="G:\Mój dysk\Foldery przedmiotów\TIN\MP1\pages\appointment\list.html" class="active">Wizyty</a></li>
+    </ul>
+</nav>
+<main>
+    <h2>Szczegóły wizyty</h2>
+    <form>
+        <label for="visit_date">Data wizyty: *</label>
+        <input type="date" name="visit_date" id="visit_date" value="10-05-2021" required disabled>
+        <span id="errorVisitDate"></span>
+
+        <label for="doctor">Lekarz przyjmujący: *</label>
+        <select name="doctor" id="doctor" required disabled>
+            <optgroup label="Lekarze">
+                <option value="1">Jan Kowalski</option>
+                <option value="2" selected>Tomasz Nowak</option>
+                <option value="3">Robert Kot</option>
+            </optgroup>
+        </select>
+        <span id="errorDoctor"></span>
+
+        <label for="patient">Pacjent: *</label>
+        <select name="patient" id="patient" required disabled>
+            <optgroup label="Pacjenci">
+                <option value="1">Adam Skrzat</option>
+                <option value="2" selected>Bartosz Kula</option>
+                <option value="3">Krzysztof Top</option>
+            </optgroup>
+        </select>
+        <span id="errorPatient"></span>
+
+        <label for="prescription">Recepta: </label>
+        <input type="text" name="prescription" id="prescription" value="Witamina C 500mg 3x dziennie" disabled>
+        <span id="errorPrescription"></span>
+
+        <label for="visit_description">Opis wizyty: </label>
+        <textarea id="visit_description" name="visit_description" rows="5" cols="40" disabled>Pacjent z osłabioną odpornością</textarea>
+        <span id="errorVisitDescription"></span>
+
+        <div>
+            <a href="form-edit.html">Edytuj</a>
+        </div>
+    </form>
+</main>
+<footer>
+    Borys, Kotnowski, s20610
+</footer>
+</body>
+</html>
