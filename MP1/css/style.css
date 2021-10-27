@@ -1,5 +1,5 @@
 html {
-    background-color: #ecf0f1;
+    background-color: #8E9AAF;
     font-family: sans-serif;
 }
 body {
@@ -18,7 +18,7 @@ nav {
 }
 header,
 footer {
-    background-color: #34495e;
+    background-color: #271F30;
     color: white;
     padding: 1rem;
 }
@@ -27,7 +27,7 @@ header {
     justify-content: space-between;
 }
 nav {
-    background-color: #bdc3c7;
+    background-color: #271F30;
 }
 nav ul {
     display:flex;
@@ -37,7 +37,7 @@ nav ul {
 }
 nav ul li a {
     display: inline-block;
-    color: #2c3e50;
+    color: white;
     padding: 1rem 2rem;
     text-decoration: none;
 }
@@ -251,36 +251,5 @@ textarea {
     }
     nav ul li{
         flex-basis: 100%
-    }
-    table, thead, tbody, th, td, tr {
-        display: block;
-    }
-
-    /* Hide table headers (but not display: none;, for accessibility) */
-    thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-
-    tr { border: 1px solid #ccc; }
-
-    td {
-        /* Behave  like a "row" */
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding-left: 50%;
-    }
-
-    td:before {
-        /* Now like a table header */
-        position: absolute;
-        /* Top/left values mimic padding */
-        top: 6px;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
     }
 }
