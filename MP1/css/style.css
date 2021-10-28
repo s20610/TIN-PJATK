@@ -72,6 +72,7 @@ main h2 {
 .table-list th,
 .table-list td {
     padding: 0.5rem;
+    text-align: center;
 }
 .table-list th,
 .table-list tbody tr:nth-child(even) {
@@ -251,5 +252,13 @@ textarea {
     }
     nav ul li{
         flex-basis: 100%
+    }
+    .list-actions-button-details,
+    .list-actions-button-edit,
+    .list-actions-button-delete{
+        display: inline-block;
+        width: 75px;
+        padding: 0.25rem 0.5rem;
+        margin: 3px;
     }
 }
