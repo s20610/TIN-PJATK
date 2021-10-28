@@ -1,6 +1,6 @@
 html {
-    background-color: #8E9AAF;
-    font-family: sans-serif;
+    background-color: #CEDDF3;
+    font-family: 'Roboto', sans-serif;
 }
 body {
     min-width: 360px;
@@ -18,7 +18,7 @@ nav {
 }
 header,
 footer {
-    background-color: #271F30;
+    background-color: #5F6995;
     color: white;
     padding: 1rem;
 }
@@ -27,7 +27,7 @@ header {
     justify-content: space-between;
 }
 nav {
-    background-color: #271F30;
+    background-color: #5F6995;
 }
 nav ul {
     display:flex;
@@ -42,11 +42,11 @@ nav ul li a {
     text-decoration: none;
 }
 nav ul li a:hover {
-    background-color: #9783AF;
+    background-color: #767FA7;
     color: #ecf0f1;
 }
 nav ul li a.active {
-    background-color: #463857;
+    background-color: #484F70;
     color: #ecf0f1;
 }
 main {
@@ -61,7 +61,7 @@ main h2 {
 }
 .table-list {
     border-collapse: collapse;
-    color:#2c3e50;
+    color:#264653;
     width: 100%;
 }
 .table-list,
@@ -112,26 +112,26 @@ main h2 {
     margin-right: 1rem;
 }
 .list-actions-button-details {
-    background-color: #2980b9;
+    background-color: #22107F;
 }
 .list-actions-button-details:hover {
-    background-color: #3498db;
+    background-color: #2C14A3;
 }
 .list-actions-button-edit {
-    background-color: #f39c12;
+    background-color: #FFBF00;
 }
 
 .list-actions-button-edit:hover {
-    background-color: #f1c40f;
+    background-color: #FFCC33;
 }
 .form-button-cancel,
 .list-actions-button-delete {
-    background-color: #c0392b;
+    background-color: #7A002F;
 }
 
 .form-button-cancel:hover,
 .list-actions-button-delete:hover {
-    background-color: #e74c3c;
+    background-color: #A3003F;
 }
 .button-add,
 .form-button-submit,
@@ -141,13 +141,13 @@ main h2 {
 .button-add,
 .form-button-submit
 {
-    background-color: #27ae60;
+    background-color: #70AD5C;
 }
 
 .button-add:hover,
 .form-button-submit:hover
 {
-    background-color: #2ecc71;
+    background-color: #88BB77;
 }
 button,
 input,
@@ -191,6 +191,7 @@ textarea {
 }
 .form-button-submit,
 .form-button-cancel {
+    margin: 5px;
     width: 100%;
 }
 .form-button-cancel {
@@ -198,9 +199,9 @@ textarea {
     display: block;
 }
 
-.form-button-submit {
-    margin-bottom: 0.5rem;
-}
+/*.form-button-submit {*/
+/*    margin-bottom: 0.5rem;*/
+/*}*/
 .form input.error-input,
 .form select.error-input {
     border: 3px solid #e74c3c
@@ -212,7 +213,7 @@ textarea {
     margin-top: 0.5em;
 }
 
-@media all and (max-width: 720px) {
+@media all and (max-width: 755px) {
     header {
         flex-direction: column;
     }
@@ -239,6 +240,14 @@ textarea {
     }
     .form-buttons{
         grid-column: 1/1;
+    }
+    .list-actions-button-details,
+    .list-actions-button-edit,
+    .list-actions-button-delete{
+        display: inline-block;
+        width: 75px;
+        padding: 0.25rem 0.5rem;
+        margin: 3px;
     }
 }
 @media all and (max-width: 400px) {
