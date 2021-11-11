@@ -204,16 +204,20 @@ textarea {
 /*}*/
 .form input.error-input,
 .form select.error-input {
-    border: 3px solid #e74c3c
+    border: 3px solid #e74c3c;
 }
 .errors-text {
     display: block;
     font-size: 0.85em;
     line-height: 2.25rem;
     margin-top: 0.5em;
+    margin-left: 4px;
 }
 
 @media all and (max-width: 755px) {
+    main {
+        padding: 1rem;
+    }
     header {
         flex-direction: column;
     }
@@ -249,6 +253,9 @@ textarea {
         padding: 0.25rem 0.5rem;
         margin: 3px;
     }
+    .doctor-email-column{
+        display: none;
+    }
 }
 @media all and (max-width: 400px) {
     body,
@@ -269,5 +276,11 @@ textarea {
         width: 75px;
         padding: 0.25rem 0.5rem;
         margin: 3px;
+    }
+    main {
+        padding: 0.5rem;
+    }
+    .doctor-email-column{
+        display: none;
     }
 }

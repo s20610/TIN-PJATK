@@ -27,11 +27,11 @@
 <main>
   <h2>Nowa wizyta</h2>
   <form class="form">
-    <label for="visit_date">Data wizyty: <span class="symbol-required">*</span></label>
+    <label for="visit_date">Data wizyty:<span class="symbol-required">*</span></label>
     <input type="date" name="visit_date" id="visit_date" class="error-input" required>
     <span id="errorVisitDate" class="errors-text">Pole jest wymagane</span>
 
-    <label for="doctor">Lekarz przyjmujący: <span class="symbol-required">*</span></label>
+    <label for="doctor">Lekarz przyjmujący:<span class="symbol-required">*</span></label>
     <select name="doctor" id="doctor" class="error-input" required>
       <optgroup label="Lekarze">
         <option value="1">Jan Kowalski</option>
@@ -41,7 +41,7 @@
     </select>
     <span id="errorDoctor" class="errors-text">Pole jest wymagane</span>
 
-    <label for="patient">Pacjent: <span class="symbol-required">*</span></label>
+    <label for="patient">Pacjent:<span class="symbol-required">*</span></label>
     <select name="patient" id="patient" class="error-input" required>
       <optgroup label="Pacjenci">
         <option value="1">Adam Skrzat</option>
@@ -51,14 +51,15 @@
     </select>
     <span id="errorPatient" class="errors-text">Pole jest wymagane</span>
 
-    <label for="prescription">Recepta: </label>
+    <label for="prescription">Recepta:</label>
     <input type="text" name="prescription" id="prescription">
     <span id="errorPrescription" class="errors-text"></span>
 
-    <label for="visit_description">Opis wizyty: </label>
+    <label for="visit_description">Opis wizyty:</label>
     <textarea id="visit_description" name="visit_description" rows="5" cols="40"></textarea>
     <span id="errorVisitDescription" class="errors-text"></span>
 
+    <p class="errors-text">Formularz zawiera błędy</p>
       <div class="form-buttons">
         <input type="submit" value="Dodaj" class="form-button-submit"/>
         <a href="list.html" class="form-button-cancel">Anuluj</a>
