@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <script type="application/javascript" src="../../js/validationCommon.js"></script>
+    <script type="application/javascript" src="../../js/validationDoctorForm.js"></script>
 </head>
 <body>
 <header>
@@ -26,7 +27,7 @@
 </nav>
 <main>
     <h2>Nowy lekarz</h2>
-    <form class="form">
+    <form class="form" onsubmit="return validateForm();" novalidate>
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
         <input type="text" name="firstName" id="firstName" required>
         <span id="errorFirstName"></span>

@@ -8,6 +8,7 @@ const errorFirstName = document.getElementById('errorFirstName');
 const errorLastName = document.getElementById('errorLastName');
 const errorChronicDiseases = document.getElementById('errorChronicDiseases');
 const errorPESEL = document.getElementById('errorPesel');
+    const errorsSummary = document.getElementById('errorsSummary');
 
 resetErrors([firstNameInput,lastNameInput,chronicDiseasesInput,peselInput], [errorFirstName,errorLastName,errorChronicDiseases,errorPESEL]);
 let valid = true;
@@ -48,5 +49,8 @@ if(!checkRequired(firstNameInput.value)){
         errorPESEL.innerText = "Pole powinno zawierać 11 cyfr";
     }
 
+    if (!valid) {
+        errorsSummary.innerText = "Formularz zawiera błędy";
+    }
     return valid;
 }
