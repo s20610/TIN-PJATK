@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8187f2ca-7b2b-4d14-8f1b-43e5d783a710" name="Changes" comment="Drobne zmiany">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MP!.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/MP1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webResources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/bin/www" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/controllers/appointmentController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/controllers/doctorController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/controllers/patientController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/controllers/specializationController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/public/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/public/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/public/js/validationAppointmentForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/public/js/validationCommon.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/public/js/validationDoctorForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/public/js/validationPatientForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/public/js/validationSpecializationForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/routes/doctorRoute.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/routes/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/error.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/index.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/appointment/details.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/appointment/form-edit.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/appointment/form-invalid.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/appointment/form.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/appointment/list-empty.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/appointment/list.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/doctor/details.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/doctor/form-edit.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/doctor/form-invalid.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/doctor/form.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/doctor/list-empty.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/doctor/list.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/patient/details.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/patient/form-edit.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/patient/form-invalid.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/patient/form.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/patient/list-empty.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/patient/list.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/specialization/details.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/specialization/form-edit.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/specialization/form-invalid.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/specialization/form.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/specialization/list-empty.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tin-projekt-kotnowski-s20610/views/pages/specialization/list.ejs" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1zDi5OTBYuYW5OccxLkQlK1LyJv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/specialization" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projekty\Repos\TIN-PJATK\MP1\pages\specialization" />
+      <recent name="G:\Mój dysk\Foldery przedmiotów\TIN\MP1\pages\appointment" />
+      <recent name="G:\Mój dysk\Foldery przedmiotów\TIN\MP1\pages\patient" />
+      <recent name="G:\Mój dysk\TIN\MP!\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projekty\Repos\TIN-PJATK\MP1\tin-projekt-kotnowski-s20610\views" />
+      <recent name="D:\Projekty\Repos\TIN-PJATK\MP1\tin-projekt-kotnowski-s20610\public" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8187f2ca-7b2b-4d14-8f1b-43e5d783a710" name="Changes" comment="" />
+      <created>1633688874812</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633688874812</updated>
+      <workItem from="1633688875993" duration="4170000" />
+      <workItem from="1634143145865" duration="3313000" />
+      <workItem from="1634194284165" duration="6364000" />
+      <workItem from="1634244331456" duration="2758000" />
+      <workItem from="1634293040994" duration="1692000" />
+      <workItem from="1634804293750" duration="609000" />
+      <workItem from="1634892423073" duration="3153000" />
+      <workItem from="1635324083952" duration="1202000" />
+      <workItem from="1635369255483" duration="10506000" />
+      <workItem from="1635414183812" duration="2682000" />
+      <workItem from="1635430985050" duration="1029000" />
+      <workItem from="1635502757539" duration="5036000" />
+      <workItem from="1635535909707" duration="30000" />
+      <workItem from="1635716378032" duration="85000" />
+      <workItem from="1636625800360" duration="7105000" />
+      <workItem from="1637143882750" duration="6862000" />
+      <workItem from="1637152706902" duration="1443000" />
+      <workItem from="1637268821582" duration="2448000" />
+      <workItem from="1637346475056" duration="2749000" />
+    </task>
+    <task id="LOCAL-00001" summary="Drobne zmiany">
+      <created>1635376004255</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1635376004255</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Drobne zmiany" />
+    <option name="LAST_COMMIT_MESSAGE" value="Drobne zmiany" />
+  </component>
+</project>
