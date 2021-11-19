@@ -1,36 +1,7 @@
-<!DOCTYPE html>
-<html lang="pl-PL">
-<head>
-    <meta charset="UTF-8">
-    <title>Klinika Demo</title>
-    <link rel="stylesheet" href="../../../public/css/style.css" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <script type="application/javascript" src="../../../public/js/validationCommon.js"></script>
-</head>
-<body>
-<header>
-    <h1>Klinika</h1>
-    <img src="../../../public/images/logo.png" alt="Logo Kliniki">
-</header>
-<nav>
-    <ul>
-        <li><a href="../../index.html">Strona główna</a></li>
-        <li><a href="../doctor/list.html">Lekarze</a></li>
-        <li><a href="../patient/list.html">Pacjenci</a></li>
-        <li><a href="..ecialization/list.html">Specjalizacje</a></li>
-        <li><a href="list.html" class="active">Wizyty</a></li>
-    </ul>
-</nav>
+<%- include('../../fragments/header.ejs') %>
 <main>
     <h2>Lista wizyt</h2>
     <p>Brak rekordów do wyświetlenia</p>
     <p><a href="form.html" class="button-add">Dodaj nową wizytę</a> </p>
 </main>
-<footer>
-    Borys, Kotnowski, s20610
-</footer>
-</body>
-</html>
+<%- include('../../fragments/footer.ejs') %>
