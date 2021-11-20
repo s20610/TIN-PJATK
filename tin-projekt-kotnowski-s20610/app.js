@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const doctorRouter = require('./routes/doctorRoute');
 const patientRouter = require('./routes/patientRoute');
 const appointmentRouter = require('./routes/appointmentRoute');

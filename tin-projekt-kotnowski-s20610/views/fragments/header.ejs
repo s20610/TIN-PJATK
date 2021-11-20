@@ -17,10 +17,10 @@
 </header>
 <nav>
     <ul>
-        <li><a href="/" class="active">Strona główna</a></li>
-        <li><a href="/doctor">Lekarze</a></li>
-        <li><a href="/patient/">Pacjenci</a></li>
-        <li><a href="/specialization/">Specjalizacje</a></li>
-        <li><a href="/appointment/">Wizyty</a></li>
+        <li><a href="/" class="<%= navLocation === 'main' ? 'active' : ''%>">Strona główna</a></li>
+        <li><a href="/doctors" class="<%= navLocation === 'doctor' ? 'active' : ''%>">Lekarze</a></li>
+        <li><a href="/patients/" class="<%= navLocation === 'patient' ? 'active' : ''%>">Pacjenci</a></li>
+        <li><a href="/specializations/" class="<%= navLocation === 'specialization' ? 'active' : ''%>">Specjalizacje</a></li>
+        <li><a href="/appointments/" class="<%= navLocation === 'appointment' ? 'active' : ''%>">Wizyty</a></li>
     </ul>
 </nav>

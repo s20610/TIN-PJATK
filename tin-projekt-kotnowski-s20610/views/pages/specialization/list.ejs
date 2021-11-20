@@ -12,10 +12,10 @@
       <td>
         <ul class="list-actions">
           <li>
-            <a href="details.html" class="list-actions-button-details">Szczegóły</a>
+            <a href="/specializations/details/:specializationId" class="list-actions-button-details">Szczegóły</a>
           </li>
           <li>
-            <a href="form-edit.html" class="list-actions-button-edit">Edytuj</a>
+            <a href="/specializations/edit/:specializationId" class="list-actions-button-edit">Edytuj</a>
           </li>
           <li>
             <a href="" class="list-actions-button-delete">Usuń</a>
@@ -25,6 +25,6 @@
     </tr>
     </tbody>
   </table>
-  <p><a href="form.html" class="button-add">Dodaj nową specjalizację</a></p>
+  <p><a href="/specializations/add" class="button-add">Dodaj nową specjalizację</a></p>
 </main>
 <%- include('../../fragments/footer.ejs') %>
