@@ -20,10 +20,6 @@ const Doctor = sequelize.define('Doctor', {
         type: Sequelize.STRING,
         allowNull: true
     },
-    specializationId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    }
 });
 
 module.exports = Doctor;

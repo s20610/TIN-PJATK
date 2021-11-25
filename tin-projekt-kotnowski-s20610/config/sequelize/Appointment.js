@@ -8,14 +8,6 @@ const Appointment = sequelize.define('Appointment', {
         allowNull: false,
         primaryKey: true
     },
-    doctorId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    patientId: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
     visitDate: {
         type: 'TIMESTAMP',
         allowNull: false

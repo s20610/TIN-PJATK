@@ -26,7 +26,7 @@ exports.createDoctor = (newDoctorData) => {
         firstName: newDoctorData.firstName,
         lastName: newDoctorData.lastName,
         email: newDoctorData.email,
-        specializationId: newDoctorData.specializationId
+        SpecializationId: newDoctorData.SpecializationId
     });
 }
 
@@ -34,7 +34,7 @@ exports.updateDoctor = (doctorId, doctorData) => {
     const firstName = doctorData.firstName;
     const lastName = doctorData.lastName;
     const email = doctorData.email;
-    const specializationId = doctorData.specializationId;
+    const SpecializationId = doctorData.SpecializationId;
     return Doctor.update(doctorData, {where: {_id: doctorId}});
 }
 

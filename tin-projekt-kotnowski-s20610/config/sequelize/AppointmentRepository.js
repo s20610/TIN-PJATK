@@ -38,8 +38,8 @@ exports.getAppointmentById = (appointmentId) => {
 exports.createAppointment = (newAppointmentData) => {
     console.log(JSON.stringify(newAppointmentData));
     return Appointment.create({
-        doctorId: newAppointmentData.doctorId,
-        patientId: newAppointmentData.patientId,
+        DoctorId: newAppointmentData.DoctorId,
+        PatientId: newAppointmentData.PatientId,
         visitDate: newAppointmentData.visitDate,
         prescription: newAppointmentData.prescription,
         visitDescription: newAppointmentData.visitDescription
