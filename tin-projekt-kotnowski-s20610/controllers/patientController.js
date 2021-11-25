@@ -1,5 +1,12 @@
+const PatientRepository = require('../config/sequelize/PatientRepository');
+
 exports.showPatientList = (req, res, next) => {
-    res.render ('pages/patient/list', {navLocation: 'patient'});
+    PatientRepository.getPatients().then(patients => {
+        res.render ('pages/patient/list', {
+            patients: patients,
+            navLocation: 'patient'
+        });
+    });
 }
 
 exports.showAddPatientForm = (req, res, next) => {
