@@ -6,14 +6,11 @@ const Specialization = require('../sequelize/Specialization');
 exports.getAppointments = () => {
     return Appointment.findAll({
         include: [{
-            model: Patient,
-            as: 'patients'
+            model: Patient
         },{
             model: Doctor,
-            as: 'doctors',
             include: [{
                 model: Specialization,
-                as: 'specializations'
             }]
         }]
     });
@@ -22,14 +19,11 @@ exports.getAppointments = () => {
 exports.getAppointmentById = (appointmentId) => {
     return Appointment.findByPk(appointmentId, {
         include: [{
-            model: Patient,
-            as: 'patients'
+            model: Patient
         },{
             model: Doctor,
-            as: 'doctors',
             include: [{
-                model: Specialization,
-                as: 'specializations'
+                model: Specialization
             }]
         }]
     });

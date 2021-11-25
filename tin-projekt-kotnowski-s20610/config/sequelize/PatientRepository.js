@@ -10,10 +10,8 @@ exports.getPatientById = (patientId) => {
     return Patient.findByPk(patientId, {
         include: [{
             model: Appointment,
-            as: 'appointments',
             include: [{
-                model: Doctor,
-                as: 'doctors'
+                model: Doctor
             }]
         }]
     });

@@ -6,8 +6,7 @@ const Patient = require('../sequelize/Patient');
 exports.getDoctors = () => {
     return Doctor.findAll({
         include: [{
-            model: Specialization,
-            as: 'specializations'
+            model: Specialization
         }]
     });
 }
@@ -15,8 +14,7 @@ exports.getDoctors = () => {
 exports.getDoctorById = (doctorId) => {
     return Doctor.findByPk(doctorId, {
         include: [{
-            model: Specialization,
-            as: 'specializations'
+            model: Specialization
         }]
     });
 }

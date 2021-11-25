@@ -8,8 +8,7 @@ exports.getSpecializations = () => {
 exports.getSpecializationById = (specializationId) => {
     return Specialization.findByPk(specializationId, {
         include: [{
-            model: Doctor,
-            as: 'doctors'
+            model: Doctor
         }]
     });
 }
