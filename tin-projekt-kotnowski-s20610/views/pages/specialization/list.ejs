@@ -7,22 +7,24 @@
       <th>Akcje</th>
     </tr>
     <tbody>
+    <% for(let spec of specializations){%>
       <tr>
-      <td>Pediatria</td>
+      <td><%= spec.specializationName%></td>
       <td>
         <ul class="list-actions">
           <li>
-            <a href="/specializations/details/:specializationId" class="list-actions-button-details">Szczegóły</a>
+            <a href="/specializations/details/<%=spec._id%>" class="list-actions-button-details">Szczegóły</a>
           </li>
           <li>
-            <a href="/specializations/edit/:specializationId" class="list-actions-button-edit">Edytuj</a>
+            <a href="/specializations/edit/<%=spec._id%>" class="list-actions-button-edit">Edytuj</a>
           </li>
           <li>
-            <a href="" class="list-actions-button-delete">Usuń</a>
+            <a href="/specializations/delete/<%=spec._id%>" class="list-actions-button-delete">Usuń</a>
           </li>
         </ul>
       </td>
     </tr>
+    <%}%>
     </tbody>
   </table>
   <p><a href="/specializations/add" class="button-add">Dodaj nową specjalizację</a></p>

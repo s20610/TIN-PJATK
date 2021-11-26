@@ -1,5 +1,12 @@
+const SpecializationRepository = require('../config/sequelize/SpecializationRepository');
+
 exports.showSpecializationList = (req, res, next) => {
-    res.render ('pages/specialization/list', {navLocation: 'specialization'});
+    SpecializationRepository.getSpecializations().then(specializations => {
+        res.render ('pages/specialization/list', {
+            specializations: specializations,
+            navLocation: 'specialization'
+        });
+    });
 }
 
 exports.showAddDSpecializationForm = (req, res, next) => {

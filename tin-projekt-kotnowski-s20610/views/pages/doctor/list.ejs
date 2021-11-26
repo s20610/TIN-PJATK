@@ -10,24 +10,26 @@
       <th>Akcje</th>
     </tr>
     <tbody>
+    <% for(let doctor of doctors){%>
     <tr>
-      <td>Jan</td>
-      <td>Kowalski</td>
-      <td class="doctor-email-column">jan.kowalski@klinika.com</td>
+      <td><%= doctor.firstName%></td>
+      <td><%= doctor.lastName%></td>
+      <td class="doctor-email-column"><%= doctor.email%></td>
       <td>
         <ul class="list-actions">
           <li>
-            <a href="/doctors/details/:doctorId" class="list-actions-button-details">Szczegóły</a>
+            <a href="/doctors/details/<%=doctor._id%>" class="list-actions-button-details">Szczegóły</a>
           </li>
           <li>
-            <a href="/doctors/edit/:doctorId" class="list-actions-button-edit">Edytuj</a>
+            <a href="/doctors/edit/<%=doctor._id%>" class="list-actions-button-edit">Edytuj</a>
           </li>
           <li>
-            <a href="" class="list-actions-button-delete">Usuń</a>
+            <a href="/doctors/delete/<%=doctor._id%>" class="list-actions-button-delete">Usuń</a>
           </li>
         </ul>
       </td>
     </tr>
+    <%}%>
     </tbody>
   </table>
   </div>

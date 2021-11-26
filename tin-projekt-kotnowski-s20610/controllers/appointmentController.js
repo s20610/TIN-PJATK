@@ -1,5 +1,12 @@
+const AppointmentRepository = require('../config/sequelize/AppointmentRepository');
+
 exports.showAppointmentList = (req, res, next) => {
-    res.render ('pages/appointment/list', {navLocation: 'appointment'});
+    AppointmentRepository.getAppointments().then(appointments => {
+        res.render ('pages/appointment/list', {
+            appointments: appointments,
+            navLocation: 'appointment'
+        });
+    });
 }
 
 exports.showAddAppointmentForm = (req, res, next) => {

@@ -9,24 +9,26 @@
       <th>Akcje</th>
     </tr>
     <tbody>
+    <% for(let appointment of appointments){%>
     <tr>
-      <td>14-10-2021 15:10 00</td>
-      <td>Jan Kowalski</td>
-      <td>Adam Skrzat</td>
+      <td><%= appointment.visitDate%></td>
+      <td><%= appointment.Doctor.firstName+' '+appointment.Doctor.lastName%></td>
+      <td><%= appointment.Patient.firstName+' '+appointment.Patient.lastName%></td>
       <td>
         <ul class="list-actions">
           <li>
-            <a href="/appointments/details/:appointmentId" class="list-actions-button-details">Szczegóły</a>
+            <a href="/appointments/details/<%=appointment._id%>" class="list-actions-button-details">Szczegóły</a>
           </li>
           <li>
-            <a href="/appointments/edit/:appointmentId" class="list-actions-button-edit">Edytuj</a>
+            <a href="/appointments/edit/<%=appointment._id%>" class="list-actions-button-edit">Edytuj</a>
           </li>
           <li>
-            <a href="" class="list-actions-button-delete">Usuń</a>
+            <a href="/appointments/delete/<%=appointment._id%>" class="list-actions-button-delete">Usuń</a>
           </li>
         </ul>
       </td>
     </tr>
+    <%}%>
     </tbody>
   </table>
   <p><a href="/appointments/add" class="button-add">Dodaj nową wizytę</a> </p>
