@@ -10,5 +10,8 @@ router.get('/details/:patientId', patientControler.showPatientDetails);
 router.get('/', function(req, res, next) {
     res.render('pages/patient/list', { navLocation: 'patient' });
 });
+router.post('/add', patientControler.addPatient);
+router.post('/edit', patientControler.updatePatient);
+router.get('/delete/:patientId', patientControler.deletePatient);
 
 module.exports = router;
