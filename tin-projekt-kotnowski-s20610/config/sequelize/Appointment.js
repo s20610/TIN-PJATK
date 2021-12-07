@@ -9,7 +9,7 @@ const Appointment = sequelize.define('Appointment', {
         primaryKey: true
     },
     visitDate: {
-        type: 'TIMESTAMP',
+        type: Sequelize.DATEONLY,
         allowNull: false
     },
     prescription: {

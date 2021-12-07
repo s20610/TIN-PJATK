@@ -6,58 +6,55 @@
         <input type="hidden" name="_id" value="<%= patient._id %>">
 
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= patient.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
+        <input required type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= patient.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
         <span id="errorFirstName"></span>
 
         <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= patient.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
+        <input required type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= patient.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
         <span id="errorLastName"></span>
 
         <label for="chronicDiseases">Choroby przewlekłe: </label>
-        <textarea id="chronicDiseases" name="chronicDiseases" rows="5" cols="40" placeholder="2-120 znaków" <%= (formMode == 'showDetails') ? 'disabled' : ''%>><% patient.chronicDiseases %></textarea>
+        <textarea id="chronicDiseases" name="chronicDiseases" rows="5" cols="40" placeholder="2-120 znaków" <%= (formMode == 'showDetails') ? 'disabled' : ''%>><%= patient.chronicDiseases %></textarea>
         <span id="errorChronicDiseases"></span>
 
         <label for="PESEL">Pesel: <span class="symbol-required">*</span></label>
-        <input type="text" name="PESEL" id="PESEL" placeholder="11 cyfr" value="<%= patient.PESEL %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
+        <input required type="text" name="PESEL" id="PESEL" placeholder="11 cyfr" value="<%= patient.PESEL %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
         <span id="errorPesel"></span>
 
         <% if (formMode == 'showDetails') { %>
-        <div class="section-buttons">
-            <a href="/patients/edit/<%= emp._id %>" class="button-edit">Edytuj</a>
-        </div>
-        <% } %>
-
-        <% if (formMode == 'showDetails' || formMode == 'edit') { %>
-        <h2>Szczegóły wizyt</h2>
-        <table class="table-list">
-            <thead>
-            <tr>
-                <th>Data wizyty</th>
-                <th>Recepta</th>
-                <th>Dokumentacja wizyty</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for (let p of patient.appointments) { %>
-                <tr>
-                    <td><a href="/appointments/details/<%= p.appointment._id %>"><%p.appointment.visitDate.toISOString().split('T') [0]%></a></td>
-                    <td><% p.prescription %></td>
-                    <td><% p.visitDescription %></td>
-                </tr>
-            <% } %>
-            </tbody>
-        </table>
+            <div class="section-buttons">
+                <a href="/patients/edit/<%= patient._id %>" class="form-button-edit">Edytuj</a>
+            </div>
         <% } %>
 
         <div class="form-buttons">
             <p id="errorsSummary" class="errors-text"></p>
             <% if (formMode != 'showDetails') { %>
-        <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
-        <a href="/patients/" class="form-button-cancel">Anuluj</a>
+            <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
+            <a href="/patients/" class="form-button-cancel">Anuluj</a>
             <% } else { %>
-            <a class="form-button-cancel" href="/patients/">Powrót</a>
+                <a class="form-button-cancel" href="/patients/">Powrót</a>
             <%}%>
         </div>
     </form>
+    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+        <h2>Szczegóły wizyt</h2>
+        <table class="table-list">
+            <tr>
+                <th>Data wizyty</th>
+                <th>Recepta</th>
+                <th>Dokumentacja wizyty</th>
+            </tr>
+            <tbody>
+            <% for (let p of patient.Appointments) { %>
+                <tr>
+                    <td><a href="/appointments/details/<%= p._id %>"><%= p.visitDate%></a></td>
+                    <td><%= p.prescription %></td>
+                    <td><%= p.visitDescription %></td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    <% } %>
 </main>
 <%- include('../../fragments/footer.ejs') %>

@@ -1,32 +1,69 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Nowy lekarz</h2>
-    <form class="form" onsubmit="return validateForm();" novalidate>
+    <script type="application/javascript" src="/js/validationDoctorForm.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%=formAction%>" onsubmit="return validateForm();" novalidate>
+        <input type="hidden" name="_id" value="<%= doctor._id %>">
+
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input type="text" name="firstName" id="firstName" required>
+        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= doctor.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
         <span id="errorFirstName"></span>
 
         <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="lastName" id="lastName" required>
+        <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= doctor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
         <span id="errorLastName"></span>
 
         <label for="email">Email: </label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" placeholder="Email np. tomasz@gmail.com" value="<%= doctor.email %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
         <span id="errorEmail"></span>
 
         <label for="specialization">Specjalizacja: <span class="symbol-required">*</span></label>
-        <select name="specialization" id="specialization"  required>
-            <optgroup label="Podstawowe">
-                <option value="1">Internista</option>
-                <option value="2">Pediatra</option>
-            </optgroup>
+        <select name="SpecializationId" id="specialization" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
+            <option value="" selected>---Wybierz specjalizację---</option>
+            <% for(let i =0; i<allSpec.length;i++) { let spec = allSpec[i];%>
+            <option value="<%= spec._id%>" label="<%= spec.specializationName%>"
+                    <%= (doctor._id && spec._id.toString() == doctor.Specialization._id.toString()) ? 'selected' : ''%>></option>
+            <%}%>
         </select>
         <span id="errorSpecialization"></span>
 
+        <% if (formMode == 'showDetails') { %>
+            <div class="section-buttons">
+                <a href="/doctors/edit/<%= doctor._id %>" class="form-button-edit">Edytuj</a>
+            </div>
+        <% } %>
+
         <div class="form-buttons">
-        <input type="submit" value="Dodaj" class="form-button-submit"/>
-        <a href="/doctors/" class="form-button-cancel">Anuluj</a>
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != 'showDetails') { %>
+            <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
+            <a href="/doctors/" class="form-button-cancel">Anuluj</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/doctors/">Powrót</a>
+            <%}%>
         </div>
     </form>
+
+    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+        <h2>Szczegóły wizyt</h2>
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Data wizyty</th>
+                <th>Recepta</th>
+                <th>Dokumentacja wizyty</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (let d of doctor.Appointments) { %>
+                <tr>
+                    <td><a href="/appointments/details/<%= d._id %>"><%= d.visitDate%></a></td>
+                    <td><%= d.prescription %></td>
+                    <td><% d.visitDescription %></td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    <% } %>
 </main>
 <%- include('../../fragments/footer.ejs') %>

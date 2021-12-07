@@ -1,14 +1,47 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Nowa specjalizacja</h2>
-    <form class="form">
-        <label for="specialization_name">Nazwa specjalizacji: <span class="symbol-required">*</span></label>
-        <input type="text" name="specialization_name" id="specialization_name" required>
+    <script type="application/javascript" src="/js/validationSpecializationForm.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%=formAction%>" onsubmit="return validateForm();" novalidate>
+        <input type="hidden" name="_id" value="<%= specialization._id %>">
+
+        <label for="specializationName">Nazwa specjalizacji: <span class="symbol-required">*</span></label>
+        <input type="text" name="specializationName" id="specializationName" placeholder="2-60 znaków" value="<%= specialization.specializationName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
         <span id="errorSpecializationName"></span>
+
+        <% if (formMode == 'showDetails') { %>
+            <div class="section-buttons">
+                <a href="/specializations/edit/<%= specialization._id %>" class="form-button-edit">Edytuj</a>
+            </div>
+        <% } %>
+
         <div class="form-buttons">
-        <input type="submit" value="Dodaj" class="form-button-submit"/>
-        <a href="/specializations/" class="form-button-cancel">Anuluj</a>
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != 'showDetails') { %>
+            <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
+            <a href="/specializations/" class="form-button-cancel">Anuluj</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/specializations/">Powrót</a>
+            <%}%>
         </div>
+
     </form>
+    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+        <h2>Przypisani lekarze</h2>
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Lekarz z tą specjalizacją</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (let s of specialization.Doctors) { %>
+                <tr>
+                    <td><a href="/doctors/details/<%= s._id %>"><%= s.firstName+' '+s.lastName%></a></td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    <% } %>
 </main>
 <%- include('../../fragments/footer.ejs') %>

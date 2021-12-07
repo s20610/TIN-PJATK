@@ -1,41 +1,56 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Nowa wizyta</h2>
-    <form class="form" onsubmit="return validateForm();" novalidate>
+    <script type="application/javascript" src="/js/validationAppointmentForm.js"></script>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%=formAction%>" onsubmit="return validateForm();" novalidate>
+        <input type="hidden" name="_id" value="<%= appointment._id %>">
+
         <label for="visit_date">Data wizyty: <span class="symbol-required">*</span></label>
-        <input type="datetime-local" name="visit_date" id="visit_date" required>
+        <input type="text" name="visit_date" id="visit_date" placeholder="YYYY-MM-DD" value="<%= appointment.visitDate %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
         <span id="errorVisitDate"></span>
 
         <label for="doctor">Lekarz przyjmujący: <span class="symbol-required">*</span></label>
-        <select name="doctor" id="doctor" required>
-            <optgroup label="Lekarze">
-                <option value="1">Jan Kowalski</option>
-                <option value="2">Tomasz Nowak</option>
-                <option value="3">Robert Kot</option>
-            </optgroup>
+        <select name="doctorId" id="doctor" <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
+            <option value="" selected>---Wybierz lekarza---</option>
+            <% for(let i =0; i<allDoctors.length;i++) { let doc = allDoctors[i];%>
+            <option value="<%= doc._id%>" label="<%= doc.firstName+' '+doc.lastName%>"
+                    <%= (appointment._id && doc._id.toString() == appointment.Doctor._id.toString()) ? 'selected' : ''%>></option>
+            <%}%>
         </select>
         <span id="errorDoctor"></span>
 
         <label for="patient">Pacjent: <span class="symbol-required">*</span></label>
-        <select name="patient" id="patient" required>
-            <optgroup label="Pacjenci">
-                <option value="1">Adam Skrzat</option>
-                <option value="2">Bartosz Kula</option>
-                <option value="3">Krzysztof Top</option>
-            </optgroup>
+        <select name="patientId" id="patient" <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
+            <option value="" selected>---Wybierz pacjenta---</option>
+            <% for(let i =0; i<allPatients.length;i++) { let patient = allPatients[i];%>
+            <option value="<%= patient._id%>" label="<%= patient.firstName+' '+patient.lastName%>"
+                    <%= (appointment._id && patient._id.toString() == appointment.Patient._id.toString()) ? 'selected' : ''%>></option>
+            <%}%>
         </select>
         <span id="errorPatient"></span>
 
         <label for="prescription">Recepta: </label>
-        <input type="text" name="prescription" id="prescription">
+        <input type="text" name="prescription" id="prescription" placeholder="Treść recepty" value="<%= appointment.prescription %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
         <span id="errorPrescription"></span>
 
         <label for="visit_description">Opis wizyty: </label>
-        <textarea id="visit_description" name="visit_description" rows="5" cols="40"></textarea>
+        <textarea id="visit_description" name="visit_description" rows="5" cols="40" placeholder="Treść opisu wizyty" <%= (formMode == 'showDetails') ? 'disabled' : ''%>><%= appointment.visitDescription %></textarea>
         <span id="errorVisitDescription"></span>
+
+        <% if (formMode == 'showDetails') { %>
+            <div class="section-buttons">
+                <a href="/appointments/edit/<%= appointment._id %>" class="form-button-edit">Edytuj</a>
+            </div>
+        <% } %>
+
         <div class="form-buttons">
-            <input type="submit" value="Dodaj" class="form-button-submit"/>
+            <p id="errorsSummary" class="errors-text"></p>
+            <% if (formMode != 'showDetails') { %>
+            <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
             <a href="/appointments/" class="form-button-cancel">Anuluj</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/appointments/">Powrót</a>
+            <%}%>
         </div>
     </form>
 </main>

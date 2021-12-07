@@ -99,7 +99,8 @@ main h2 {
 .list-actions-button-delete,
 .button-add,
 .form-button-submit,
-.form-button-cancel {
+.form-button-cancel,
+.form-button-edit{
     border: none;
     border-radius: 5px;
     color: white;
@@ -117,11 +118,13 @@ main h2 {
 .list-actions-button-details:hover {
     background-color: #2C14A3;
 }
-.list-actions-button-edit {
+.list-actions-button-edit,
+.form-button-edit{
     background-color: #FFBF00;
 }
 
-.list-actions-button-edit:hover {
+.list-actions-button-edit:hover,
+.form-button-edit:hover{
     background-color: #FFCC33;
 }
 .form-button-cancel,
@@ -135,7 +138,8 @@ main h2 {
 }
 .button-add,
 .form-button-submit,
-.form-button-cancel {
+.form-button-cancel,
+.form-button-edit{
     padding: 0.5rem 1rem;
 }
 .button-add,
@@ -190,7 +194,8 @@ textarea {
     grid-column: 1/ span 2;
 }
 .form-button-submit,
-.form-button-cancel {
+.form-button-cancel,
+.form-button-edit{
     margin: 5px;
     width: 100%;
 }
@@ -199,9 +204,6 @@ textarea {
     display: block;
 }
 
-/*.form-button-submit {*/
-/*    margin-bottom: 0.5rem;*/
-/*}*/
 .form input.error-input,
 .form select.error-input {
     border: 3px solid #e74c3c;
@@ -271,7 +273,7 @@ textarea {
     }
     .list-actions-button-details,
     .list-actions-button-edit,
-    .list-actions-button-delete{
+    .list-actions-button-delete {
         display: inline-block;
         width: 75px;
         padding: 0.25rem 0.5rem;

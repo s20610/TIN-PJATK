@@ -15,7 +15,7 @@ module.exports = () => {
 
     let allPatients, allDoctors, allSpecializations;
 
-    return sequelize.sync({force: true})
+    return sequelize.sync({force: false})
         .then( () => {
             return Specialization.findAll();
         }).then(specs => {
@@ -71,10 +71,10 @@ module.exports = () => {
         }).then(appointments => {
             if(!appointments || appointments.length === 0){
                 return Appointment.bulkCreate([
-                    {DoctorId: 1, PatientId: 1, visitDate: '2021-05-22 15:10:00', prescription: 'Tabletki 3x dziennie', visitDescription: 'Rutynowa kontrola'},
-                    {DoctorId: 1, PatientId: 2, visitDate: '2021-06-10 14:20:00', prescription: 'Brak', visitDescription: 'Problemy z sercem, podłoże stresowe'},
-                    {DoctorId: 4, PatientId: 3, visitDate: '2021-07-15 13:00:00', prescription: '', visitDescription: ''},
-                    {DoctorId: 3, PatientId: 4, visitDate: '2021-05-21 13:30:00', prescription: '', visitDescription: ''},
+                    {DoctorId: 1, PatientId: 1, visitDate: '2021-05-22', prescription: 'Tabletki 3x dziennie', visitDescription: 'Rutynowa kontrola'},
+                    {DoctorId: 1, PatientId: 2, visitDate: '2021-06-10', prescription: 'Brak', visitDescription: 'Problemy z sercem, podłoże stresowe'},
+                    {DoctorId: 4, PatientId: 3, visitDate: '2021-07-15', prescription: '', visitDescription: ''},
+                    {DoctorId: 3, PatientId: 4, visitDate: '2021-05-21', prescription: '', visitDescription: ''},
                 ]).then( () => {
                     return Appointment.findAll();
                 });

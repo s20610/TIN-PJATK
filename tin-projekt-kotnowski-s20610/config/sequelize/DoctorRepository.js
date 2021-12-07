@@ -14,7 +14,9 @@ exports.getDoctors = () => {
 exports.getDoctorById = (doctorId) => {
     return Doctor.findByPk(doctorId, {
         include: [{
-            model: Specialization
+            model: Specialization,
+        },{
+            model: Appointment
         }]
     });
 }

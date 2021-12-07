@@ -10,5 +10,8 @@ router.get('/edit/:doctorId', doctorControler.showEditDoctorForm);
 router.get('/', function(req, res, next) {
     res.render('pages/doctor/list', { navLocation: 'doctor' });
 });
+router.post('/add', doctorControler.addDoctor);
+router.post('/edit', doctorControler.updateDoctor);
+router.get('/delete/:doctorId', doctorControler.deleteDoctor);
 
 module.exports = router;

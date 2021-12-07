@@ -23,24 +23,24 @@ exports.showAddPatientForm = (req, res, next) => {
 exports.showPatientDetails = (req, res, next) => {
     const patientId = req.params.patientId;
     PatientRepository.getPatientById(patientId).then(patient => {
-    res.render ('pages/patient/details', {
+    res.render ('pages/patient/form', {
         patient: patient,
         formMode: 'showDetails',
         pageTitle: 'Szczegóły pacjenta',
         formAction: '',
         navLocation: 'patient'
-    })
+    });
     });
 }
 
 exports.showPatientEditForm = (req, res, next) => {
     const patientId = req.params.patientId;
     PatientRepository.getPatientById(patientId).then(patient => {
-    res.render ('pages/patient/form-edit', {
+    res.render ('pages/patient/form', {
         patient: patient,
-        pageTitle: 'Edycja pracownika',
+        pageTitle: 'Edycja pacjenta',
         formMode: 'edit',
-        btnLabel: 'Edytuj pacjenta',
+        btnLabel: 'Akceptuj zmiany',
         formAction: '/patients/edit',
         navLocation: 'patient'
     })
@@ -60,12 +60,12 @@ exports.updatePatient = (req, res, next) => {
     PatientRepository.updatePatient(patientId, patientData)
         .then(result => {
             res.redirect('/patients')
-        })
+        });
 };
 exports.deletePatient = (req, res, next) => {
     const patientId = req.body._id;
     PatientRepository.deletePatient(patientId)
         .then(() => {
             res.redirect('/patients')
-        })
+        });
 };
