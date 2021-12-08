@@ -11,7 +11,7 @@
     <tbody>
     <% for(let appointment of appointments){%>
     <tr>
-      <td><%= appointment.visitDate.toString().replace(':00 GMT+0200 (Central European Summer Time)','') %></td>
+      <td><%= appointment.visitDate %></td>
       <td><%= appointment.Doctor.firstName+' '+appointment.Doctor.lastName%></td>
       <td><%= appointment.Patient.firstName+' '+appointment.Patient.lastName%></td>
       <td>

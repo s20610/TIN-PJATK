@@ -2,24 +2,40 @@
 <main>
     <script type="application/javascript" src="/js/validationPatientForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" onsubmit="return validateForm();" novalidate>
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="_id" value="<%= patient._id %>">
 
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input required type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= patient.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-        <span id="errorFirstName"></span>
+        <input required type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= patient.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : ''%>"/>
+        <span id="errorFirstName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+            <% } %>
+        </span>
 
         <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input required type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= patient.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-        <span id="errorLastName"></span>
+        <input required type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= patient.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : ''%>"/>
+        <span id="errorLastName" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+            <% } %>
+        </span>
 
         <label for="chronicDiseases">Choroby przewlekłe: </label>
-        <textarea id="chronicDiseases" name="chronicDiseases" rows="5" cols="40" placeholder="2-120 znaków" <%= (formMode == 'showDetails') ? 'disabled' : ''%>><%= patient.chronicDiseases %></textarea>
-        <span id="errorChronicDiseases"></span>
+        <textarea id="chronicDiseases" name="chronicDiseases" rows="5" cols="40" placeholder="2-120 znaków" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('chronicDiseases')) ? 'error-input' : ''%>"><%= patient.chronicDiseases %></textarea>
+        <span id="errorChronicDiseases" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('chronicDiseases'))) { %>
+                <%= validationErrors.find(e => e.path.includes('chronicDiseases')).message %>
+            <% } %>
+        </span>
 
         <label for="PESEL">Pesel: <span class="symbol-required">*</span></label>
-        <input required type="text" name="PESEL" id="PESEL" placeholder="11 cyfr" value="<%= patient.PESEL %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-        <span id="errorPesel"></span>
+        <input required type="text" name="PESEL" id="PESEL" placeholder="11 cyfr" value="<%= patient.PESEL %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('PESEL')) ? 'error-input' : ''%>"/>
+        <span id="errorPesel" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('PESEL'))) { %>
+                <%= validationErrors.find(e => e.path.includes('PESEL')).message %>
+            <% } %>
+        </span>
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
@@ -27,8 +43,9 @@
             </div>
         <% } %>
 
+        <span id="errorsSummary" class="errors-text"></span>
+
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
             <% if (formMode != 'showDetails') { %>
             <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
             <a href="/patients/" class="form-button-cancel">Anuluj</a>

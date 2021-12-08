@@ -1,40 +1,56 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
     <script type="application/javascript" src="/js/validationDoctorForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" onsubmit="return validateForm();" novalidate>
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
         <input type="hidden" name="_id" value="<%= doctor._id %>">
 
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= doctor.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-        <span id="errorFirstName"></span>
+        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= doctor.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : ''%>"/>
+        <span id="errorFirstName">
+            <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+            <% } %>
+        </span>
 
         <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= doctor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>/>
-        <span id="errorLastName"></span>
+        <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= doctor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : ''%>"/>
+        <span id="errorLastName">
+            <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
+                <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+            <% } %>
+        </span>
 
         <label for="email">Email: </label>
-        <input type="email" name="email" id="email" placeholder="Email np. tomasz@gmail.com" value="<%= doctor.email %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
-        <span id="errorEmail"></span>
+        <input type="email" name="email" id="email" placeholder="Email np. tomasz@gmail.com" value="<%= doctor.email %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : ''%>">
+        <span id="errorEmail">
+            <% if (validationErrors.find(e => e.path.includes('email'))) { %>
+                <%= validationErrors.find(e => e.path.includes('email')).message %>
+            <% } %>
+        </span>
 
-        <label for="specialization">Specjalizacja: <span class="symbol-required">*</span></label>
-        <select name="SpecializationId" id="specialization" required <%= (formMode == 'showDetails') ? 'disabled' : ''%>>
+        <label for="specializationId">Specjalizacja: <span class="symbol-required">*</span></label>
+        <select name="SpecializationId" id="specializationId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('specializationId')) ? 'error-input' : ''%>">
             <option value="" selected>---Wybierz specjalizację---</option>
             <% for(let i =0; i<allSpec.length;i++) { let spec = allSpec[i];%>
             <option value="<%= spec._id%>" label="<%= spec.specializationName%>"
                     <%= (doctor._id && spec._id.toString() == doctor.Specialization._id.toString()) ? 'selected' : ''%>></option>
             <%}%>
         </select>
-        <span id="errorSpecialization"></span>
+        <span id="errorSpecialization">
+            <% if (validationErrors.find(e => e.path.includes('specializationId'))) { %>
+                <%= validationErrors.find(e => e.path.includes('specializationId')).message %>
+            <% } %>
+        </span>
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
                 <a href="/doctors/edit/<%= doctor._id %>" class="form-button-edit">Edytuj</a>
             </div>
         <% } %>
-
+        <span id="errorsSummary" class="errors-text"></span>
         <div class="form-buttons">
-            <p id="errorsSummary" class="errors-text"></p>
             <% if (formMode != 'showDetails') { %>
             <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
             <a href="/doctors/" class="form-button-cancel">Anuluj</a>

@@ -46,6 +46,6 @@ exports.updateAppointment = (appointmentId, appointmentData) => {
 
 exports.deleteAppointment = (appointmentId) => {
     return Appointment.destroy({
-        where: {_id: appointmentId}
+        where: { _id: appointmentId}
     });
 }

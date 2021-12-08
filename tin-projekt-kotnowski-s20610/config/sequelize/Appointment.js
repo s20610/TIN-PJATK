@@ -10,15 +10,24 @@ const Appointment = sequelize.define('Appointment', {
     },
     visitDate: {
         type: Sequelize.DATEONLY,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            },
+            len: {
+                args: [10,10],
+                msg: "Data w formacie YYYY-MM-DD"
+            }
+        }
     },
     prescription: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
     },
     visitDescription: {
         type: Sequelize.STRING,
-        allowNull: true
+        allowNull: true,
     }
 });
 

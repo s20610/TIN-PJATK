@@ -20,7 +20,8 @@ exports.showAddDoctorForm = (req, res, next) => {
                 pageTitle: 'Nowy lekarz',
                 btnLabel: 'Dodaj lekarza',
                 formAction: '/doctors/add',
-                navLocation: 'doctor'
+                navLocation: 'doctor',
+                validationErrors: []
             });
         })
 }
@@ -38,7 +39,8 @@ exports.showDoctorDetails = (req, res, next) => {
             formMode: 'showDetails',
             pageTitle: 'Szczegóły lekarza',
             formAction: '',
-            navLocation: 'doctor'
+            navLocation: 'doctor',
+            validationErrors: []
         });
     })
 }
@@ -56,18 +58,38 @@ exports.showEditDoctorForm = (req, res, next) => {
             pageTitle: 'Edycja lekarza',
             formMode: 'edit',
             btnLabel: 'Akceptuj zmiany',
-            formAction: '/doctor/edit',
-            navLocation: 'doctor'
+            formAction: '/doctors/edit',
+            navLocation: 'doctor',
+            validationErrors: []
         });
     })
 }
 
 exports.addDoctor = (req,res,next) => {
     const doctorData = {...req.body};
-    DoctorRepository.createDoctor(doctorData)
-        .then(result => {
+    let specializations;
+    SpecializationRepository.getSpecializations().then( specs =>{
+        specializations = specs;
+        return DoctorRepository.createDoctor(doctorData)
+    }).then(result => {
             res.redirect('/doctors');
+        }).catch(err => {
+            err.errors.forEach(e => {
+                if(e.path.includes('email') && e.type === 'unique violation') {
+                    e.message = 'Podany adres email jest już używany';
+                }
+            });
+        res.render ('pages/doctor/form', {
+            doctor: {},
+            formMode: 'createNew',
+            allSpec: specializations,
+            pageTitle: 'Nowy lekarz',
+            btnLabel: 'Dodaj lekarza',
+            formAction: '/doctors/add',
+            navLocation: 'doctor',
+            validationErrors: err.errors
         });
+    })
 }
 
 exports.updateDoctor = (req,res,next) => {
@@ -76,11 +98,27 @@ exports.updateDoctor = (req,res,next) => {
     DoctorRepository.updateDoctor(doctorId,doctorData)
         .then(result => {
             res.redirect('/doctors')
+        }).catch(err => {
+        err.errors.forEach(e => {
+            if(e.path.includes('email') && e.type === 'unique violation') {
+                e.message = 'Podany adres email jest już używany';
+            }
         });
+        res.render ('pages/doctor/form', {
+            allSpec: allSpec,
+            doctor: doctor,
+            pageTitle: 'Edycja lekarza',
+            formMode: 'edit',
+            btnLabel: 'Akceptuj zmiany',
+            formAction: '/doctors/edit',
+            navLocation: 'doctor',
+            validationErrors: err.errors
+        });
+    })
 }
 
 exports.deleteDoctor = (req,res,next) => {
-    const doctorId = req.body._id;
+    const doctorId = req.params.doctorId;
     DoctorRepository.deleteDoctor(doctorId)
         .then(() => {
             res.redirect('/doctors')

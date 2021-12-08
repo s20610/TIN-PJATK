@@ -2,7 +2,7 @@ function validateForm() {
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('lastName');
     const emailInput = document.getElementById('email');
-    const specializationInput = document.getElementById('specialization');
+    const specializationInput = document.getElementById('specializationId');
 
     const errorFirstName = document.getElementById('errorFirstName');
     const errorLastName = document.getElementById('errorLastName');
@@ -10,7 +10,7 @@ function validateForm() {
     const errorSpecialization = document.getElementById('errorSpecialization');
     const errorsSummary = document.getElementById('errorsSummary');
 
-    resetErrors([firstNameInput,lastNameInput,emailInput,specializationInput], [errorFirstName,errorLastName,errorEmail,errorSpecialization]);
+    resetErrors([firstNameInput,lastNameInput,emailInput,specializationInput], [errorFirstName,errorLastName,errorEmail,errorSpecialization], errorsSummary);
     let valid = true;
 //Walidacja imion
     if(!checkRequired(firstNameInput.value)){
@@ -32,15 +32,21 @@ function validateForm() {
         lastNameInput.classList.add("error-input");
         errorLastName.innerText = "Pole powinno zawierać od 2 do 60 znaków";
     }
-//Walidacja adresów email
-    if (! checkTextLengthRange (emailInput.value, 5, 60)) {
+// //Walidacja adresów email
+//     if (! checkTextLengthRange (emailInput.value, 5, 60)) {
+//         valid = false;
+//         emailInput.classList.add ("error-input");
+//         errorEmail.innerText = "Pole powinno zawierać od 5 do 60 znaków";
+//     } else if (!checkEmail (emailInput.value)) {
+//         valid = false;
+//         emailInput.classList.add ("error-input");
+//         errorEmail.innerText = "Pole powinno zawierać prawidłowy adres email";
+//     }
+    //Walidacja specjalizacji
+    if(!checkRequired(specializationInput.value)) {
         valid = false;
-        emailInput.classList.add ("error-input");
-        errorEmail.innerText = "Pole powinno zawierać od 5 do 60 znaków";
-    } else if (!checkEmail (emailInput.value)) {
-        valid = false;
-        emailInput.classList.add ("error-input");
-        errorEmail.innerText = "Pole powinno zawierać prawidłowy adres email";
+        specializationInput.classList.add("error-input");
+        errorSpecialization.innerText = "Pole jest wymagane";
     }
 
     if (!valid) {

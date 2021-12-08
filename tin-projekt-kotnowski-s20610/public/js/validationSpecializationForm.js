@@ -1,10 +1,10 @@
 function validateForm() {
-    const specializationNameInput = document.getElementById('specialization_name');
+    const specializationNameInput = document.getElementById('specializationName');
 
     const errorSpecializationName = document.getElementById('errorSpecializationName');
     const errorsSummary = document.getElementById('errorsSummary');
 
-    resetErrors([specializationNameInput], [errorSpecializationName]);
+    resetErrors([specializationNameInput], [errorSpecializationName], errorsSummary);
     let valid = true;
 
 //Walidacja imion

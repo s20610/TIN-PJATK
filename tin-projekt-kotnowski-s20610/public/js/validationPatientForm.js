@@ -1,7 +1,7 @@
 function validateForm() {
 const firstNameInput = document.getElementById('firstName');
 const lastNameInput = document.getElementById('lastName');
-const chronicDiseasesInput = document.getElementById('chronic_diseases');
+const chronicDiseasesInput = document.getElementById('chronicDiseases');
 const peselInput = document.getElementById('pesel');
 
 const errorFirstName = document.getElementById('errorFirstName');
@@ -10,7 +10,7 @@ const errorChronicDiseases = document.getElementById('errorChronicDiseases');
 const errorPESEL = document.getElementById('errorPesel');
     const errorsSummary = document.getElementById('errorsSummary');
 
-resetErrors([firstNameInput,lastNameInput,chronicDiseasesInput,peselInput], [errorFirstName,errorLastName,errorChronicDiseases,errorPESEL]);
+resetErrors([firstNameInput,lastNameInput,chronicDiseasesInput,peselInput], [errorFirstName,errorLastName,errorChronicDiseases,errorPESEL], errorsSummary);
 let valid = true;
 //Walidacja imion
 if(!checkRequired(firstNameInput.value)){
@@ -48,7 +48,6 @@ if(!checkRequired(firstNameInput.value)){
         peselInput.classList.add("error-input");
         errorPESEL.innerText = "Pole powinno zawierać 11 cyfr";
     }
-
     if (!valid) {
         errorsSummary.innerText = "Formularz zawiera błędy";
     }

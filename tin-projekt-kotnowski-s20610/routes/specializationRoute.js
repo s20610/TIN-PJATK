@@ -4,7 +4,7 @@ const router = express.Router();
 const specializationControler = require('../controllers/specializationController');
 
 router.get('/', specializationControler.showSpecializationList);
-router.get('/add', specializationControler.showAddDSpecializationForm);
+router.get('/add', specializationControler.showAddSpecializationForm);
 router.get('/edit/:specializationId', specializationControler.showSpecializationEditForm);
 router.get('/details/:specializationId', specializationControler.showSpecializationDetails);
 router.get('/', function(req, res, next) {
@@ -12,6 +12,6 @@ router.get('/', function(req, res, next) {
 });
 router.post('/add', specializationControler.addSpecialization);
 router.post('/edit', specializationControler.updateSpecialization);
-router.get('/delete/:specializationId', specializationControler.updateSpecialization);
+router.get('/delete/:specializationId', specializationControler.deleteSpecialization);
 
 module.exports = router;

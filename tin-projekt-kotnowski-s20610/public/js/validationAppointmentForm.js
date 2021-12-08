@@ -1,9 +1,9 @@
 function validateForm() {
-    const idDoctorInput = document.getElementById('doctor');
-    const idPatientInput = document.getElementById('patient');
-    const visitDateInput = document.getElementById('visit_date');
+    const idDoctorInput = document.getElementById('doctorId');
+    const idPatientInput = document.getElementById('patientId');
+    const visitDateInput = document.getElementById('visitDate');
     const prescriptionInput = document.getElementById('prescription');
-    const visitDescriptionInput = document.getElementById('visit_description');
+    const visitDescriptionInput = document.getElementById('visitDescription');
 
     const errorIdDoctor = document.getElementById('errorDoctor');
     const errorIdPatient = document.getElementById('errorPatient');
@@ -12,7 +12,7 @@ function validateForm() {
     const errorVisitDescription = document.getElementById('errorVisitDescription');
     const errorsSummary = document.getElementById('errorsSummary');
 
-    resetErrors([idDoctorInput,idPatientInput,visitDateInput,prescriptionInput,visitDescriptionInput], [errorIdDoctor,errorIdPatient,errorVisitDate,errorPrescription,errorVisitDescription]);
+    resetErrors([idDoctorInput,idPatientInput,visitDateInput,prescriptionInput,visitDescriptionInput], [errorIdDoctor,errorIdPatient,errorVisitDate,errorPrescription,errorVisitDescription], errorsSummary);
     let valid = true;
 //Walidacja doktora
     if(!checkRequired(idDoctorInput.value)){
@@ -47,18 +47,18 @@ function validateForm() {
         errorVisitDate.innerText = "Data nie może być z przyszłości";
     }
 
-    //Walidacja recepty
-    if (!checkTextLengthRange(prescriptionInput.value, 0, 100)){
-        valid = false;
-        prescriptionInput.classList.add("error-input");
-        errorPrescription.innerText = "Pole powinno zawierać od 0 do 100 znaków";
-    }
-    //Walidacja opisu wizyty
-    if (!checkTextLengthRange(visitDescriptionInput.value, 0, 100)){
-        valid = false;
-        visitDescriptionInput.classList.add("error-input");
-        errorVisitDescription.innerText = "Pole powinno zawierać od 0 do 100 znaków";
-    }
+    // //Walidacja recepty
+    // if (!checkTextLengthRange(prescriptionInput.value, 0, 100)){
+    //     valid = false;
+    //     prescriptionInput.classList.add("error-input");
+    //     errorPrescription.innerText = "Pole powinno zawierać od 0 do 100 znaków";
+    // }
+    // //Walidacja opisu wizyty
+    // if (!checkTextLengthRange(visitDescriptionInput.value, 0, 100)){
+    //     valid = false;
+    //     visitDescriptionInput.classList.add("error-input");
+    //     errorVisitDescription.innerText = "Pole powinno zawierać od 0 do 100 znaków";
+    // }
 
 
     if (!valid) {

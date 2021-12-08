@@ -10,7 +10,16 @@ const Specialization = sequelize.define('Specialization', {
     },
     specializationName: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            },
+            len: {
+                args: [2,60],
+                msg: "Pole powinno zawierać od 2 do 60 znaków"
+            }
+        }
     }
 });
 

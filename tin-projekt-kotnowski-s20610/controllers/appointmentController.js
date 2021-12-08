@@ -28,7 +28,8 @@ exports.showAddAppointmentForm = (req, res, next) => {
         pageTitle: 'Nowa wizyta',
         btnLabel: 'Dodaj wizytę',
         formAction: '/appointments/add',
-        navLocation: 'appointment'
+        navLocation: 'appointment',
+        validationErrors: []
     });
     });
 }
@@ -51,7 +52,8 @@ exports.showAppointmentDetails = (req, res, next) => {
             formMode: 'showDetails',
             pageTitle: 'Szczegóły wizyty',
             formAction: '',
-            navLocation: 'appointment'
+            navLocation: 'appointment',
+            validationErrors: []
         });
     });
 }
@@ -75,30 +77,69 @@ exports.showEditAppointmentForm = (req, res, next) => {
             formMode: 'edit',
             btnLabel: 'Akceptuj zmiany',
             formAction: '/appointments/edit',
-            navLocation: 'appointment'
+            navLocation: 'appointment',
+            validationErrors: []
         });
     });
 }
 
 exports.addAppointment = (req,res,next) => {
+    let allPatients, allDoctors;
     const appointmentData = {...req.body};
-    AppointmentRepository.createAppointment(appointmentData)
-        .then(result => {
-            res.redirect('/appointments');
+    PatientRepository.getPatients()
+        .then(patients =>{
+            allPatients = patients;
+            return DoctorRepository.getDoctors();
+        }).then(doctors => {
+        allDoctors = doctors;
+        return AppointmentRepository.createAppointment(appointmentData)
+    }).then(result => {
+        res.redirect('/appointments');
+    }).catch(err => {
+        res.render ('pages/appointment/form', {
+            appointment: {},
+            formMode: 'createNew',
+            allPatients: [],
+            allDoctors: [],
+            pageTitle: 'Nowa wizyta',
+            btnLabel: 'Dodaj wizytę',
+            formAction: '/appointments/add',
+            navLocation: 'appointment',
+            validationErrors: err.errors
         });
+    })
 }
 
 exports.updateAppointment = (req,res,next) => {
     const appointmentId = req.body._id;
     const appointmentData = {...req.body};
-    AppointmentRepository.updateAppointment(appointmentId,appointmentData)
-        .then(result => {
+    let allPatients, allDoctors;
+    PatientRepository.getPatients()
+        .then(patients =>{
+            allPatients = patients;
+            return DoctorRepository.getDoctors();
+        }).then(doctors => {
+        allDoctors = doctors;
+        return AppointmentRepository.updateAppointment(appointmentId, appointmentData)
+    }).then(result => {
             res.redirect('/appointments')
+        }).catch(err => {
+        res.render ('pages/appointment/form', {
+            appointment: appt,
+            allPatients: allPatients,
+            allDoctors: allDoctors,
+            pageTitle: 'Edycja wizyty',
+            formMode: 'edit',
+            btnLabel: 'Akceptuj zmiany',
+            formAction: '/appointments/edit',
+            navLocation: 'appointment',
+            validationErrors: err.errors
         });
+    })
 }
 
 exports.deleteAppointment = (req,res,next) => {
-    const appointmentId = req.body._id;
+    const appointmentId = req.params.appointmentId;
     AppointmentRepository.deleteAppointment(appointmentId)
         .then(() => {
             res.redirect('/appointments')

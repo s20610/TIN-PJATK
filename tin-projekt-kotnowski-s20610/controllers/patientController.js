@@ -16,7 +16,8 @@ exports.showAddPatientForm = (req, res, next) => {
         formMode: 'createNew',
         btnLabel: 'Dodaj pacjenta',
         formAction: '/patients/add',
-        navLocation: 'patient'
+        navLocation: 'patient',
+        validationErrors: []
     });
 }
 
@@ -28,7 +29,8 @@ exports.showPatientDetails = (req, res, next) => {
         formMode: 'showDetails',
         pageTitle: 'Szczegóły pacjenta',
         formAction: '',
-        navLocation: 'patient'
+        navLocation: 'patient',
+        validationErrors: []
     });
     });
 }
@@ -42,7 +44,8 @@ exports.showPatientEditForm = (req, res, next) => {
         formMode: 'edit',
         btnLabel: 'Akceptuj zmiany',
         formAction: '/patients/edit',
-        navLocation: 'patient'
+        navLocation: 'patient',
+        validationErrors: []
     })
     });
 }
@@ -52,7 +55,17 @@ exports.addPatient = (req, res, next) => {
     PatientRepository.createPatient(patientData)
         .then(result => {
             res.redirect('/patients');
+        }).catch(err => {
+        res.render ('pages/patient/form', {
+            patient: patientData,
+            pageTitle: 'Nowy pacjent',
+            formMode: 'createNew',
+            btnLabel: 'Dodaj pacjenta',
+            formAction: '/patients/add',
+            navLocation: 'patient',
+            validationErrors: err.errors
         });
+    });
 };
 exports.updatePatient = (req, res, next) => {
     const patientId = req.body._id;
@@ -60,10 +73,20 @@ exports.updatePatient = (req, res, next) => {
     PatientRepository.updatePatient(patientId, patientData)
         .then(result => {
             res.redirect('/patients')
+        }).catch(err => {
+        res.render ('pages/patient/form', {
+            patient: patientData,
+            pageTitle: 'Edycja pacjenta',
+            formMode: 'edit',
+            btnLabel: 'Akceptuj zmiany',
+            formAction: '/patients/edit',
+            navLocation: 'patient',
+            validationErrors: err.errors
         });
+    })
 };
 exports.deletePatient = (req, res, next) => {
-    const patientId = req.body._id;
+    const patientId = req.params.patientId;
     PatientRepository.deletePatient(patientId)
         .then(() => {
             res.redirect('/patients')
