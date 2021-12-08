@@ -1,0 +1,15 @@
+1. Instrukcja uruchomienia projektu
+
+=> Rozpakować archiwum z kodem źródłowym
+=> Przejść do katalogu z projektem
+=> Uruchomić terminal w katalogu z projektem
+=> Wpisać polecenie 'docker-compose up'
+=> Zainstalować wymagane biblioteki poleceniem 'npm install'
+=> Uruchomić aplikację za pomocą 'npm start'
+=> Aplikacja dostępna jest pod adresem 'localhost:3000'
+2. Instrukcja instalacji i konfiguracji bazy danych
+=> Po stworzeniu kontenerów przez dockera logujemy się do phpmyadmin pod adresem 'localhost:8183'
+=> Dane do logowania to serwer: mysql user: root password: root
+=> W zakładce SQL wpisujemy 'CREATE SCHEMA IF NOT EXISTS  tins20610sequelize;' i klikamy wykonaj
+=> Jeśli w katalogu config/sequelize plik init.js ma w 18 linijce (return sequelize.sync({force: true}))
+ustawioną wartość true to tabele i początkowe dane wstawią się same przy uruchomieniu aplikacji. Po pierwszym uruchomieniu wartość możemy ustawić na false

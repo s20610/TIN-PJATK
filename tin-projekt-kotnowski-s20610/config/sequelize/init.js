@@ -15,7 +15,7 @@ module.exports = () => {
 
     let allPatients, allDoctors, allSpecializations;
 
-    return sequelize.sync({force: false})
+    return sequelize.sync({force: true})
         .then( () => {
             return Specialization.findAll();
         }).then(specs => {
