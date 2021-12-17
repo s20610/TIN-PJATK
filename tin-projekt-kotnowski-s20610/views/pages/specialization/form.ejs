@@ -3,25 +3,29 @@
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <script type="application/javascript" src="/js/validationSpecializationForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= specialization._id %>">
         <label for="specializationName">Nazwa specjalizacji: <span class="symbol-required">*</span></label>
-        <input type="text" name="specializationName" id="specializationName" placeholder="2-60 znaków" value="<%= specialization.specializationName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('specializationName')) ? 'error-input' : ''%>">
+        <input type="text" name="specializationName" id="specializationName" placeholder="2-60 znaków" value="<%= specialization.specializationName %>" <%= (formMode === 'showDetails') ? 'disabled' : ''%>class="<%= validationErrors.find(e => e.path.includes('specializationName')) ? 'error-input' : ''%>">
         <span id="errorSpecializationName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('specializationName'))) { %>
             <%= validationErrors.find(e => e.path.includes('specializationName')).message %>
             <% } %>
         </span>
 
-        <% if (formMode == 'showDetails') { %>
+        <% if (formMode === 'showDetails') { %>
             <div class="section-buttons">
                 <a href="/specializations/edit/<%= specialization._id %>" class="form-button-edit">Edytuj</a>
             </div>
         <% } %>
 
         <div class="form-buttons">
-            <span id="errorsSummary" class="errors-text"></span>
-            <% if (formMode != 'showDetails') { %>
+            <span id="errorsSummary" class="errors-text">
+                <% if(validationErrors.length !== 0) {%>
+                    <%= "Formularz zawiera błędy"%>
+                <%}%>
+            </span>
+            <% if (formMode !== 'showDetails') { %>
             <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
             <a href="/specializations/" class="form-button-cancel">Anuluj</a>
             <% } else { %>
@@ -30,7 +34,7 @@
         </div>
 
     </form>
-    <% if (formMode == 'showDetails' || formMode == 'edit') { %>
+    <% if (formMode === 'showDetails' || formMode === 'edit') { %>
         <h2>Przypisani lekarze</h2>
         <table class="table-list">
             <thead>
@@ -39,6 +43,12 @@
             </tr>
             </thead>
             <tbody>
+
+            <% if(specialization.Doctors.length === 0) {%>
+                <tr>
+                    <td colspan="3">Brak lekarzy z wybraną specjalizacją</td>
+                </tr>
+            <% } %>
             <% for (let s of specialization.Doctors) { %>
                 <tr>
                     <td><a href="/doctors/details/<%= s._id %>"><%= s.firstName+' '+s.lastName%></a></td>

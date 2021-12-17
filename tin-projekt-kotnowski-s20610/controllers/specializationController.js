@@ -1,12 +1,18 @@
 const SpecializationRepository = require('../config/sequelize/SpecializationRepository');
-const PatientRepository = require("../config/sequelize/PatientRepository");
-
+require("../config/sequelize/PatientRepository");
 exports.showSpecializationList = (req, res, next) => {
     SpecializationRepository.getSpecializations().then(specializations => {
-        res.render ('pages/specialization/list', {
-            specializations: specializations,
-            navLocation: 'specialization'
-        });
+        if(specializations.length === 0) {
+            res.render ('pages/specialization/list-empty', {
+                specializations: specializations,
+                navLocation: 'specialization'
+            });
+        }else{
+            res.render ('pages/specialization/list', {
+                specializations: specializations,
+                navLocation: 'specialization'
+            });
+        }
     });
 }
 
@@ -58,7 +64,7 @@ exports.addSpecialization = (req, res, next) => {
             res.redirect('/specializations');
         }).catch(err => {
         res.render ('pages/specialization/form', {
-            specialization: {},
+            specialization: specializationData,
             pageTitle: 'Nowa specjalizacja',
             formMode: 'createNew',
             btnLabel: 'Dodaj specjalizację',
@@ -75,15 +81,17 @@ exports.updateSpecialization = (req, res, next) => {
         .then(result => {
             res.redirect('/specializations');
         }).catch(err => {
-        res.render ('pages/specialization/form', {
-            specialization: specializationData,
-            pageTitle: 'Edycja specjalizacji',
-            formMode: 'edit',
-            btnLabel: 'Akceptuj zmiany',
-            formAction: '/specializations/edit',
-            navLocation: 'specialization',
-            validationErrors: err.errors
-        });
+            SpecializationRepository.getSpecializationById(specializationId).then(spec => {
+                res.render ('pages/specialization/form', {
+                    specialization: spec,
+                    pageTitle: 'Edycja specjalizacji',
+                    formMode: 'edit',
+                    btnLabel: 'Akceptuj zmiany',
+                    formAction: '/specializations/edit',
+                    navLocation: 'specialization',
+                    validationErrors: err.errors
+                });
+            })
     })
 };
 exports.deleteSpecialization = (req, res, next) => {

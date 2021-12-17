@@ -2,7 +2,7 @@
 <main>
     <script type="application/javascript" src="/js/validationPatientForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= patient._id %>">
 
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
@@ -43,7 +43,11 @@
             </div>
         <% } %>
 
-        <span id="errorsSummary" class="errors-text"></span>
+        <span id="errorsSummary" class="errors-text">
+            <% if(validationErrors.length !== 0) {%>
+                <%= "Formularz zawiera błędy"%>
+            <%}%>
+        </span>
 
         <div class="form-buttons">
             <% if (formMode != 'showDetails') { %>
@@ -63,6 +67,12 @@
                 <th>Dokumentacja wizyty</th>
             </tr>
             <tbody>
+            <% if(patient.Appointments.length === 0) {%>
+                <tr>
+                    <td colspan="3">Brak wizyt dla wybranego pacjenta</td>
+                </tr>
+            <% } %>
+
             <% for (let p of patient.Appointments) { %>
                 <tr>
                     <td><a href="/appointments/details/<%= p._id %>"><%= p.visitDate%></a></td>

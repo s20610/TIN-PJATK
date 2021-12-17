@@ -3,10 +3,17 @@ const SpecializationRepository = require('../config/sequelize/SpecializationRepo
 
 exports.showDoctorList = (req, res, next) => {
     DoctorRepository.getDoctors().then(doctors => {
-        res.render ('pages/doctor/list', {
-            doctors: doctors,
-            navLocation: 'doctor'
-        });
+        if(doctors.length === 0){
+            res.render ('pages/doctor/list-empty', {
+                doctors: doctors,
+                navLocation: 'doctor'
+            });
+        }else{
+            res.render ('pages/doctor/list', {
+                doctors: doctors,
+                navLocation: 'doctor'
+            });
+        }
     });
 }
 
@@ -68,52 +75,58 @@ exports.showEditDoctorForm = (req, res, next) => {
 exports.addDoctor = (req,res,next) => {
     const doctorData = {...req.body};
     let specializations;
-    SpecializationRepository.getSpecializations().then( specs =>{
-        specializations = specs;
-        return DoctorRepository.createDoctor(doctorData)
-    }).then(result => {
-            res.redirect('/doctors');
-        }).catch(err => {
-            err.errors.forEach(e => {
-                if(e.path.includes('email') && e.type === 'unique violation') {
-                    e.message = 'Podany adres email jest już używany';
-                }
+    DoctorRepository.createDoctor(doctorData).then(result => {
+        res.redirect('/doctors');
+    }).catch(err => {
+        // err.errors.forEach(e => {
+        //     if (e.path.includes('email') && e.type === 'unique violation') {
+        //         e.message = 'Podany adres email jest już używany';
+        //     }
+        // });
+        SpecializationRepository.getSpecializations().then(specs => {
+            specializations = specs;
+            res.render('pages/doctor/form', {
+                doctor: doctorData,
+                formMode: 'createNew',
+                allSpec: specializations,
+                pageTitle: 'Nowy lekarz',
+                btnLabel: 'Dodaj lekarza',
+                formAction: '/doctors/add',
+                navLocation: 'doctor',
+                validationErrors: err.errors
             });
-        res.render ('pages/doctor/form', {
-            doctor: {},
-            formMode: 'createNew',
-            allSpec: specializations,
-            pageTitle: 'Nowy lekarz',
-            btnLabel: 'Dodaj lekarza',
-            formAction: '/doctors/add',
-            navLocation: 'doctor',
-            validationErrors: err.errors
-        });
+        })
     })
 }
 
 exports.updateDoctor = (req,res,next) => {
     const doctorId = req.body._id;
     const doctorData = {...req.body};
-    DoctorRepository.updateDoctor(doctorId,doctorData)
+    let specializations;
+    DoctorRepository.updateDoctor(doctorId, doctorData)
         .then(result => {
             res.redirect('/doctors')
         }).catch(err => {
-        err.errors.forEach(e => {
-            if(e.path.includes('email') && e.type === 'unique violation') {
-                e.message = 'Podany adres email jest już używany';
-            }
-        });
-        res.render ('pages/doctor/form', {
-            allSpec: allSpec,
-            doctor: doctor,
-            pageTitle: 'Edycja lekarza',
-            formMode: 'edit',
-            btnLabel: 'Akceptuj zmiany',
-            formAction: '/doctors/edit',
-            navLocation: 'doctor',
-            validationErrors: err.errors
-        });
+        // err.errors.forEach(e => {
+        //     if(e.path.includes('email') && e.type === 'unique violation') {
+        //         e.message = 'Podany adres email jest już używany';
+        //     }
+        // });
+        SpecializationRepository.getSpecializations().then(specs => {
+            specializations = specs;
+            DoctorRepository.getDoctorById(doctorId).then(doctor =>{
+                res.render('pages/doctor/form', {
+                    allSpec: specializations,
+                    doctor: doctor,
+                    pageTitle: 'Edycja lekarza',
+                    formMode: 'edit',
+                    btnLabel: 'Akceptuj zmiany',
+                    formAction: '/doctors/edit',
+                    navLocation: 'doctor',
+                    validationErrors: err.errors
+                });
+            })
+        })
     })
 }
 

@@ -2,10 +2,17 @@ const PatientRepository = require('../config/sequelize/PatientRepository');
 
 exports.showPatientList = (req, res, next) => {
     PatientRepository.getPatients().then(patients => {
-        res.render ('pages/patient/list', {
-            patients: patients,
-            navLocation: 'patient'
-        });
+        if(patients.length === 0){
+            res.render ('pages/patient/list-empty', {
+                patients: patients,
+                navLocation: 'patient'
+            });
+        }else{
+            res.render ('pages/patient/list', {
+                patients: patients,
+                navLocation: 'patient'
+            });
+        }
     });
 }
 
@@ -74,15 +81,17 @@ exports.updatePatient = (req, res, next) => {
         .then(result => {
             res.redirect('/patients')
         }).catch(err => {
-        res.render ('pages/patient/form', {
-            patient: patientData,
-            pageTitle: 'Edycja pacjenta',
-            formMode: 'edit',
-            btnLabel: 'Akceptuj zmiany',
-            formAction: '/patients/edit',
-            navLocation: 'patient',
-            validationErrors: err.errors
-        });
+            PatientRepository.getPatientById(patientId).then(patient => {
+                res.render ('pages/patient/form', {
+                    patient: patient,
+                    pageTitle: 'Edycja pacjenta',
+                    formMode: 'edit',
+                    btnLabel: 'Akceptuj zmiany',
+                    formAction: '/patients/edit',
+                    navLocation: 'patient',
+                    validationErrors: err.errors
+                });
+            })
     })
 };
 exports.deletePatient = (req, res, next) => {

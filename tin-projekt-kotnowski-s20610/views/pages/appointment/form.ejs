@@ -2,12 +2,12 @@
 <main>
     <script type="application/javascript" src="/js/validationAppointmentForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= appointment._id %>">
 
         <label for="visitDate">Data wizyty: <span class="symbol-required">*</span></label>
         <input type="text" name="visitDate" id="visitDate" placeholder="YYYY-MM-DD" value="<%= appointment.visitDate %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('visitDate')) ? 'error-input' : ''%>">
-        <span id="errorVisitDate"></span>
+        <span id="errorVisitDate" class="errors-text"></span>
 
         <label for="doctorId">Lekarz przyjmujący: <span class="symbol-required">*</span></label>
         <select name="DoctorId" id="doctorId" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('doctorId')) ? 'error-input' : ''%>">
@@ -17,7 +17,7 @@
                     <%= (appointment._id && doc._id.toString() == appointment.Doctor._id.toString()) ? 'selected' : ''%>></option>
             <%}%>
         </select>
-        <span id="errorDoctor"></span>
+        <span id="errorDoctor" class="errors-text"></span>
 
         <label for="patientId">Pacjent: <span class="symbol-required">*</span></label>
         <select name="PatientId" id="patientId" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('patientId')) ? 'error-input' : ''%>">
@@ -27,15 +27,15 @@
                     <%= (appointment._id && patient._id.toString() == appointment.Patient._id.toString()) ? 'selected' : ''%>></option>
             <%}%>
         </select>
-        <span id="errorPatient"></span>
+        <span id="errorPatient" class="errors-text"></span>
 
         <label for="prescription">Recepta: </label>
         <input type="text" name="prescription" id="prescription" placeholder="Treść recepty" value="<%= appointment.prescription %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('prescription')) ? 'error-input' : ''%>">
-        <span id="errorPrescription"></span>
+        <span id="errorPrescription" class="errors-text"></span>
 
         <label for="visitDescription">Opis wizyty: </label>
         <textarea id="visitDescription" name="visitDescription" rows="5" cols="40" placeholder="Treść opisu wizyty" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('visitDescription')) ? 'error-input' : ''%>"><%= appointment.visitDescription %></textarea>
-        <span id="errorVisitDescription"></span>
+        <span id="errorVisitDescription" class="errors-text"></span>
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
@@ -43,7 +43,11 @@
             </div>
         <% } %>
 
-        <span id="errorsSummary" class="errors-text"></span>
+        <span id="errorsSummary" class="errors-text">
+            <% if(validationErrors.length !== 0) {%>
+                <%= "Formularz zawiera błędy"%>
+            <%}%>
+        </span>
 
         <div class="form-buttons">
 

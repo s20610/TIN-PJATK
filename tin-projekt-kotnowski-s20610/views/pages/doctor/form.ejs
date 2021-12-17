@@ -3,12 +3,12 @@
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <script type="application/javascript" src="/js/validationDoctorForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= doctor._id %>">
 
         <label for="firstName">Imię: <span class="symbol-required">*</span></label>
         <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= doctor.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : ''%>"/>
-        <span id="errorFirstName">
+        <span id="errorFirstName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
                 <%= validationErrors.find(e => e.path.includes('firstName')).message %>
             <% } %>
@@ -16,7 +16,7 @@
 
         <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
         <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= doctor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : ''%>"/>
-        <span id="errorLastName">
+        <span id="errorLastName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
                 <%= validationErrors.find(e => e.path.includes('lastName')).message %>
             <% } %>
@@ -24,7 +24,7 @@
 
         <label for="email">Email: </label>
         <input type="email" name="email" id="email" placeholder="Email np. tomasz@gmail.com" value="<%= doctor.email %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : ''%>">
-        <span id="errorEmail">
+        <span id="errorEmail" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('email'))) { %>
                 <%= validationErrors.find(e => e.path.includes('email')).message %>
             <% } %>
@@ -38,7 +38,7 @@
                     <%= (doctor._id && spec._id.toString() == doctor.Specialization._id.toString()) ? 'selected' : ''%>></option>
             <%}%>
         </select>
-        <span id="errorSpecialization">
+        <span id="errorSpecialization" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('specializationId'))) { %>
                 <%= validationErrors.find(e => e.path.includes('specializationId')).message %>
             <% } %>
@@ -49,7 +49,11 @@
                 <a href="/doctors/edit/<%= doctor._id %>" class="form-button-edit">Edytuj</a>
             </div>
         <% } %>
-        <span id="errorsSummary" class="errors-text"></span>
+        <span id="errorsSummary" class="errors-text">
+            <% if(validationErrors.length !== 0) {%>
+                <%= "Formularz zawiera błędy"%>
+            <%}%>
+        </span>
         <div class="form-buttons">
             <% if (formMode != 'showDetails') { %>
             <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
@@ -71,6 +75,11 @@
             </tr>
             </thead>
             <tbody>
+            <% if(doctor.Appointments.length === 0) {%>
+                <tr>
+                    <td colspan="3">Brak wizyt dla wybranego lekarz</td>
+                </tr>
+                <% } %>
             <% for (let d of doctor.Appointments) { %>
                 <tr>
                     <td><a href="/appointments/details/<%= d._id %>"><%= d.visitDate%></a></td>

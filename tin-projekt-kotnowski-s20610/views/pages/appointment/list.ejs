@@ -12,8 +12,16 @@
     <% for(let appointment of appointments){%>
     <tr>
       <td><%= appointment.visitDate %></td>
+      <% if(appointment.Doctor !== null) { %>
       <td><%= appointment.Doctor.firstName+' '+appointment.Doctor.lastName%></td>
+        <%} else{%>
+      <td><%= "Lekarz nie występuje w bazie"%></td>
+      <%}%>
+      <% if(appointment.Patient !== null) { %>
       <td><%= appointment.Patient.firstName+' '+appointment.Patient.lastName%></td>
+      <%} else{%>
+        <td><%= "Pacjent nie występuje w bazie"%></td>
+      <%}%>
       <td>
         <ul class="list-actions">
           <li>
