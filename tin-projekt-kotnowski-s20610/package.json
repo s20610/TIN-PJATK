@@ -7,10 +7,12 @@
   },
   "dependencies": {
     "@types/sequelize": "^4.28.10",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "debug": "^4.3.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "http-errors": "^1.8.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",

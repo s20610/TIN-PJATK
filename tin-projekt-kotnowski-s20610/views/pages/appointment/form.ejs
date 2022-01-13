@@ -11,20 +11,26 @@
 
         <label for="doctorId">Lekarz przyjmujący: <span class="symbol-required">*</span></label>
         <select name="DoctorId" id="doctorId" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('doctorId')) ? 'error-input' : ''%>">
+           <% if(formMode !== 'edit') {%>
             <option value="" selected>---Wybierz lekarza---</option>
+            <%}%>
+
             <% for(let i =0; i<allDoctors.length;i++) { let doc = allDoctors[i];%>
             <option value="<%= doc._id%>" label="<%= doc.firstName+' '+doc.lastName%>"
-                    <%= (appointment._id && doc._id.toString() == appointment.Doctor._id.toString()) ? 'selected' : ''%>></option>
+                    <%= (appointment._id && doc._id.toString() === appointmentBefore.Doctor._id.toString()) ? 'selected' : ''%>></option>
             <%}%>
         </select>
         <span id="errorDoctor" class="errors-text"></span>
 
         <label for="patientId">Pacjent: <span class="symbol-required">*</span></label>
         <select name="PatientId" id="patientId" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('patientId')) ? 'error-input' : ''%>">
+            <% if(formMode !== 'edit') {%>
             <option value="" selected>---Wybierz pacjenta---</option>
+                <%}%>
+
             <% for(let i =0; i<allPatients.length;i++) { let patient = allPatients[i];%>
             <option value="<%= patient._id%>" label="<%= patient.firstName+' '+patient.lastName%>"
-                    <%= (appointment._id && patient._id.toString() == appointment.Patient._id.toString()) ? 'selected' : ''%>></option>
+                    <%= (appointment._id && patient._id.toString() == appointmentBefore.Patient._id.toString()) ? 'selected' : ''%>></option>
             <%}%>
         </select>
         <span id="errorPatient" class="errors-text"></span>
@@ -39,7 +45,7 @@
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
-                <a href="/appointments/edit/<%= appointment._id %>" class="form-button-edit">Edytuj</a>
+                <a href="/appointments/edit/<%= appointmentBefore._id %>" class="form-button-edit">Edytuj</a>
             </div>
         <% } %>
 

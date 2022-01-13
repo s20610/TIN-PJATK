@@ -19,6 +19,7 @@ exports.showPatientList = (req, res, next) => {
 exports.showAddPatientForm = (req, res, next) => {
     res.render ('pages/patient/form', {
         patient: {},
+        patientBefore: {},
         pageTitle: 'Nowy pacjent',
         formMode: 'createNew',
         btnLabel: 'Dodaj pacjenta',
@@ -33,6 +34,7 @@ exports.showPatientDetails = (req, res, next) => {
     PatientRepository.getPatientById(patientId).then(patient => {
     res.render ('pages/patient/form', {
         patient: patient,
+        patientBefore: patient,
         formMode: 'showDetails',
         pageTitle: 'Szczegóły pacjenta',
         formAction: '',
@@ -47,6 +49,7 @@ exports.showPatientEditForm = (req, res, next) => {
     PatientRepository.getPatientById(patientId).then(patient => {
     res.render ('pages/patient/form', {
         patient: patient,
+        patientBefore: patient,
         pageTitle: 'Edycja pacjenta',
         formMode: 'edit',
         btnLabel: 'Akceptuj zmiany',
@@ -65,6 +68,7 @@ exports.addPatient = (req, res, next) => {
         }).catch(err => {
         res.render ('pages/patient/form', {
             patient: patientData,
+            patientBefore: patientData,
             pageTitle: 'Nowy pacjent',
             formMode: 'createNew',
             btnLabel: 'Dodaj pacjenta',
@@ -83,7 +87,8 @@ exports.updatePatient = (req, res, next) => {
         }).catch(err => {
             PatientRepository.getPatientById(patientId).then(patient => {
                 res.render ('pages/patient/form', {
-                    patient: patient,
+                    patient: patientData,
+                    patientBefore: patient,
                     pageTitle: 'Edycja pacjenta',
                     formMode: 'edit',
                     btnLabel: 'Akceptuj zmiany',

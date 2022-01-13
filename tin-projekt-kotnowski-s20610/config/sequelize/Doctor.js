@@ -47,6 +47,10 @@ const Doctor = sequelize.define('Doctor', {
             }
         }
     },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 });
 
 module.exports = Doctor;

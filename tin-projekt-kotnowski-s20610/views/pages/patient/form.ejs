@@ -67,13 +67,13 @@
                 <th>Dokumentacja wizyty</th>
             </tr>
             <tbody>
-            <% if(patient.Appointments.length === 0) {%>
+            <% if(patientBefore.Appointments.length === 0) {%>
                 <tr>
                     <td colspan="3">Brak wizyt dla wybranego pacjenta</td>
                 </tr>
             <% } %>
 
-            <% for (let p of patient.Appointments) { %>
+            <% for (let p of patientBefore.Appointments) { %>
                 <tr>
                     <td><a href="/appointments/details/<%= p._id %>"><%= p.visitDate%></a></td>
                     <td><%= p.prescription %></td>

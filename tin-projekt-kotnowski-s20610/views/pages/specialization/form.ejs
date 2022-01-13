@@ -44,12 +44,12 @@
             </thead>
             <tbody>
 
-            <% if(specialization.Doctors.length === 0) {%>
+            <% if(specializationBeforeData.Doctors.length === 0) {%>
                 <tr>
                     <td colspan="3">Brak lekarzy z wybraną specjalizacją</td>
                 </tr>
             <% } %>
-            <% for (let s of specialization.Doctors) { %>
+            <% for (let s of specializationBeforeData.Doctors) { %>
                 <tr>
                     <td><a href="/doctors/details/<%= s._id %>"><%= s.firstName+' '+s.lastName%></a></td>
                 </tr>

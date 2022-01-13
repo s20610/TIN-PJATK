@@ -14,6 +14,8 @@ const patientApiRouter = require('./routes/api/PatientApiRoute');
 const doctorApiRouter = require('./routes/api/DoctorApiRoute');
 const specializationApiRouter = require('./routes/api/SpecializationApiRoute');
 const appointmentApiRouter = require('./routes/api/AppointmentApiRoute');
+const session = require('express-session');
+const authUtils = require("./util/authUtil");
 
 var app = express();
 
@@ -26,12 +28,24 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'my_secret_password',
+  resave: false
+}));
+app.use((req,res,next) => {
+  const loggedUser = req.session.loggedUser;
+  res.locals.loggedUser = loggedUser;
+  if(!res.locals.loginError) {
+    res.locals.loginError = undefined;
+  }
+  next();
+})
 
 app.use('/', indexRouter);
-app.use('/doctors', doctorRouter);
-app.use('/patients', patientRouter);
-app.use('/appointments', appointmentRouter);
-app.use('/specializations', specializationRouter);
+app.use('/doctors', authUtils.permitAuthenticatedUser,doctorRouter);
+app.use('/patients', authUtils.permitAuthenticatedUser,patientRouter);
+app.use('/appointments', authUtils.permitAuthenticatedUser,appointmentRouter);
+app.use('/specializations', authUtils.permitAuthenticatedUser,specializationRouter);
 app.use('/api/patients', patientApiRouter);
 app.use('/api/doctors', doctorApiRouter);
 app.use('/api/appointments', appointmentApiRouter);

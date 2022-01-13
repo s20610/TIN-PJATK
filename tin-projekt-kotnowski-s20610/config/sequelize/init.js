@@ -4,6 +4,8 @@ const Patient = require('../../config/sequelize/Patient');
 const Doctor = require('../../config/sequelize/Doctor');
 const Appointment = require('../../config/sequelize/Appointment');
 const Specialization = require('../../config/sequelize/Specialization');
+const authUtil = require('../../util/authUtil');
+const passHash = authUtil.hashPassword('12345');
 
 module.exports = () => {
     Specialization.hasMany(Doctor);
@@ -15,7 +17,7 @@ module.exports = () => {
 
     let allPatients, allDoctors, allSpecializations;
 
-    return sequelize.sync({force: true})
+    return sequelize.sync({force: false})
         .then( () => {
             return Specialization.findAll();
         }).then(specs => {
@@ -39,10 +41,10 @@ module.exports = () => {
         }).then( doctors => {
             if(!doctors || doctors.length === 0){
                 return Doctor.bulkCreate([
-                    {firstName: 'Jan', lastName: 'Bytnar', email: 'jan.bytnar@klinika.com', SpecializationId: 4},
-                    {firstName: 'Tomasz', lastName: 'Wiśniewski', email: 'tomasz.wiśniewski@klinika.com', SpecializationId: 2},
-                    {firstName: 'Marcin', lastName: 'Kowal', email: 'marcin.kowal@klinika.com', SpecializationId: 3},
-                    {firstName: 'Anna', lastName: 'Wójcik', email: 'michal.wojcik@klinika.com', SpecializationId: 5},
+                    {firstName: 'Jan', lastName: 'Bytnar', email: 'jan.bytnar@klinika.com', SpecializationId: 4, password: passHash},
+                    {firstName: 'Tomasz', lastName: 'Wiśniewski', email: 'tomasz.wiśniewski@klinika.com', SpecializationId: 2, password: '54321'},
+                    {firstName: 'Marcin', lastName: 'Kowal', email: 'marcin.kowal@klinika.com', SpecializationId: 3, password: 'asdjjva'},
+                    {firstName: 'Anna', lastName: 'Wójcik', email: 'michal.wojcik@klinika.com', SpecializationId: 5, password: 'f23r4ga'},
                 ]).then( () => {
                     return Doctor.findAll();
                 });

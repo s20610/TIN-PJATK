@@ -29,6 +29,7 @@ exports.showAddAppointmentForm = (req, res, next) => {
             allDoctors = doctors;
     res.render ('pages/appointment/form', {
         appointment: {},
+        appointmentBefore: {},
         formMode: 'createNew',
         allPatients: allPatients,
         allDoctors: allDoctors,
@@ -54,6 +55,7 @@ exports.showAppointmentDetails = (req, res, next) => {
         }).then(appt => {
         res.render ('pages/appointment/form', {
             appointment: appt,
+            appointmentBefore: appt,
             allPatients: allPatients,
             allDoctors: allDoctors,
             formMode: 'showDetails',
@@ -78,6 +80,7 @@ exports.showEditAppointmentForm = (req, res, next) => {
     }).then(appt => {
         res.render ('pages/appointment/form', {
             appointment: appt,
+            appointmentBefore: appt,
             allPatients: allPatients,
             allDoctors: allDoctors,
             pageTitle: 'Edycja wizyty',
@@ -103,6 +106,7 @@ exports.addAppointment = (req,res,next) => {
             allDoctors = doctors;
             res.render('pages/appointment/form', {
                 appointment: appointmentData,
+                appointmentBefore: appointmentData,
                 formMode: 'createNew',
                 allPatients: allPatients,
                 allDoctors: allDoctors,
@@ -119,18 +123,24 @@ exports.addAppointment = (req,res,next) => {
 exports.updateAppointment = (req,res,next) => {
     const appointmentId = req.body._id;
     const appointmentData = {...req.body};
+    let errors;
     let allPatients, allDoctors;
     AppointmentRepository.updateAppointment(appointmentId, appointmentData).then(result => {
         res.redirect('/appointments')
     }).catch(err => {
         PatientRepository.getPatients().then(patients => {
+            errors = err.errors;
+            if(errors.length === 0){
+                errors = [];
+            }
             allPatients = patients;
             return DoctorRepository.getDoctors();
         }).then(doctors => {
             allDoctors = doctors;
             AppointmentRepository.getAppointmentById(appointmentId).then(appt => {
                 res.render('pages/appointment/form', {
-                    appointment: appt,
+                    appointment: appointmentData,
+                    appointmentBefore: appt,
                     allPatients: allPatients,
                     allDoctors: allDoctors,
                     pageTitle: 'Edycja wizyty',
@@ -138,7 +148,7 @@ exports.updateAppointment = (req,res,next) => {
                     btnLabel: 'Akceptuj zmiany',
                     formAction: '/appointments/edit',
                     navLocation: 'appointment',
-                    validationErrors: err.errors
+                    validationErrors: errors
                 });
             })
         });

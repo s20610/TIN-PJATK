@@ -22,6 +22,7 @@ exports.showAddDoctorForm = (req, res, next) => {
         .then(specializations => {
             res.render ('pages/doctor/form', {
                 doctor: {},
+                doctorBefore: {},
                 formMode: 'createNew',
                 allSpec: specializations,
                 pageTitle: 'Nowy lekarz',
@@ -42,6 +43,7 @@ exports.showDoctorDetails = (req, res, next) => {
     }).then(doctor => {
         res.render ('pages/doctor/form', {
             doctor: doctor,
+            doctorBefore: doctor,
             allSpec: allSpec,
             formMode: 'showDetails',
             pageTitle: 'Szczegóły lekarza',
@@ -62,6 +64,7 @@ exports.showEditDoctorForm = (req, res, next) => {
         res.render ('pages/doctor/form', {
             allSpec: allSpec,
             doctor: doctor,
+            doctorBefore: doctor,
             pageTitle: 'Edycja lekarza',
             formMode: 'edit',
             btnLabel: 'Akceptuj zmiany',
@@ -84,9 +87,11 @@ exports.addDoctor = (req,res,next) => {
         //     }
         // });
         SpecializationRepository.getSpecializations().then(specs => {
+            console.log(doctorData);
             specializations = specs;
             res.render('pages/doctor/form', {
                 doctor: doctorData,
+                doctorBefore: doctorData,
                 formMode: 'createNew',
                 allSpec: specializations,
                 pageTitle: 'Nowy lekarz',
@@ -103,6 +108,7 @@ exports.updateDoctor = (req,res,next) => {
     const doctorId = req.body._id;
     const doctorData = {...req.body};
     let specializations;
+    let errors;
     DoctorRepository.updateDoctor(doctorId, doctorData)
         .then(result => {
             res.redirect('/doctors')
@@ -112,18 +118,24 @@ exports.updateDoctor = (req,res,next) => {
         //         e.message = 'Podany adres email jest już używany';
         //     }
         // });
+        errors = err.errors;
+        if(errors.length === 0){
+            errors = [];
+        }
         SpecializationRepository.getSpecializations().then(specs => {
             specializations = specs;
             DoctorRepository.getDoctorById(doctorId).then(doctor =>{
+                console.log(doctorData);
                 res.render('pages/doctor/form', {
                     allSpec: specializations,
-                    doctor: doctor,
+                    doctor: doctorData,
+                    doctorBefore: doctor,
                     pageTitle: 'Edycja lekarza',
                     formMode: 'edit',
                     btnLabel: 'Akceptuj zmiany',
                     formAction: '/doctors/edit',
                     navLocation: 'doctor',
-                    validationErrors: err.errors
+                    validationErrors: errors
                 });
             })
         })

@@ -19,6 +19,7 @@ exports.showSpecializationList = (req, res, next) => {
 exports.showAddSpecializationForm = (req, res, next) => {
     res.render ('pages/specialization/form', {
         specialization: {},
+        specializationBeforeData: {},
         pageTitle: 'Nowa specjalizacja',
         formMode: 'createNew',
         btnLabel: 'Dodaj specjalizację',
@@ -33,6 +34,7 @@ exports.showSpecializationDetails = (req, res, next) => {
     SpecializationRepository.getSpecializationById(specializationId).then(specialization => {
         res.render ('pages/specialization/form', {
             specialization: specialization,
+            specializationBeforeData: specialization,
             formMode: 'showDetails',
             pageTitle: 'Szczegóły specjalizacji',
             formAction: '',
@@ -47,6 +49,7 @@ exports.showSpecializationEditForm = (req, res, next) => {
     SpecializationRepository.getSpecializationById(specializationId).then(specialization => {
         res.render ('pages/specialization/form', {
             specialization: specialization,
+            specializationBeforeData: specialization,
             pageTitle: 'Edycja specjalizacji',
             formMode: 'edit',
             btnLabel: 'Akceptuj zmiany',
@@ -83,7 +86,8 @@ exports.updateSpecialization = (req, res, next) => {
         }).catch(err => {
             SpecializationRepository.getSpecializationById(specializationId).then(spec => {
                 res.render ('pages/specialization/form', {
-                    specialization: spec,
+                    specialization: specializationData,
+                    specializationBeforeData: spec,
                     pageTitle: 'Edycja specjalizacji',
                     formMode: 'edit',
                     btnLabel: 'Akceptuj zmiany',

@@ -16,7 +16,7 @@ const Appointment = sequelize.define('Appointment', {
                 msg: "Pole jest wymagane"
             },
             len: {
-                args: [10,10],
+                args: [9,10],
                 msg: "Data w formacie YYYY-MM-DD"
             }
         }
@@ -24,10 +24,22 @@ const Appointment = sequelize.define('Appointment', {
     prescription: {
         type: Sequelize.STRING,
         allowNull: true,
+        validate: {
+            len: {
+                args: [0,100],
+                msg: "Od 0 do 100 znaków"
+            }
+        }
     },
     visitDescription: {
         type: Sequelize.STRING,
         allowNull: true,
+        validate: {
+            len: {
+                args: [0,100],
+                msg: "Od 0 do 100 znaków"
+            }
+        }
     }
 });
 
