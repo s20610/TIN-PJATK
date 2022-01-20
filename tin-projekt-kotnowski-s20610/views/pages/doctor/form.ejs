@@ -5,12 +5,25 @@
     <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= doctor._id %>">
+        <div style="display: none">
+            <span id="errorMessage-required"><%= __('auth.fieldRequired') %></span>
+        </div>
+        <div style="display: none">
+            <span id="errorMessage-formError"><%= __('auth.formError') %></span>
+        </div>
+        <div style="display: none">
+            <span id="errorMessage-lengthError"><%= __('auth.lengthError') %></span>
+        </div>
 
         <label for="firstName"><%= __('doctors.fields.firstName') %>: <span class="symbol-required">*</span></label>
         <input type="text" name="firstName" id="firstName" placeholder="2-60" value="<%= doctor.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : ''%>"/>
         <span id="errorFirstName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
-                <%= validationErrors.find(e => e.path.includes('firstName')).message %>
+                <% if(validationErrors.find(e => e.path.includes('firstName')).message.toString() === "Pole jest wymagane") { %>
+                <%= __('auth.fieldRequired')%>
+                <%}else{%>
+                        <%= __('auth.lengthError')%>
+                    <%}%>
             <% } %>
         </span>
 
@@ -18,7 +31,11 @@
         <input type="text" name="lastName" id="lastName" placeholder="2-60" value="<%= doctor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : ''%>"/>
         <span id="errorLastName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
-                <%= validationErrors.find(e => e.path.includes('lastName')).message %>
+                <% if(validationErrors.find(e => e.path.includes('lastName')).message === "Pole jest wymagane") {%>
+                    <%= __('auth.fieldRequired')%>
+                <%}else{%>
+                    <%= __('auth.lengthError')%>
+                <%}%>
             <% } %>
         </span>
 
@@ -53,9 +70,9 @@
         <% if (formMode == 'createNew') {%>
         <label for="password"><%= __('doctors.fields.password') %>: <span class="symbol-required">*</span></label>
         <input type="password" name="password" id="password" placeholder="******" value="<%= doctor.password %>" <%= (formMode == 'showDetails' || formMode == 'edit') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : ''%>">
-        <span id="errorEmail" class="errors-text">
+        <span id="errorPassword" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('password'))) { %>
-                <%= validationErrors.find(e => e.path.includes('password')).message %>
+                <%= __('auth.fieldRequired') %>
             <% } %>
         </span>
             <% } %>
@@ -67,7 +84,7 @@
         <% } %>
         <span id="errorsSummary" class="errors-text">
             <% if(validationErrors.length !== 0) {%>
-                <%= "Formularz zawiera błędy"%>
+                <%= __('auth.formError')%>
             <%}%>
         </span>
         <div class="form-buttons">

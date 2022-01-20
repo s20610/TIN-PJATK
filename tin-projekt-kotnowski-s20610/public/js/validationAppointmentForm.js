@@ -11,6 +11,10 @@ function validateForm() {
     const errorPrescription = document.getElementById('errorPrescription');
     const errorVisitDescription = document.getElementById('errorVisitDescription');
     const errorsSummary = document.getElementById('errorsSummary');
+    const reqMessage = document.getElementById('errorMessage-required').innerText;
+    const dateErrorMessage = document.getElementById('errorMessage-dateError').innerText;
+    const dateFutureMessage = document.getElementById('errorMessage-dateFutureError').innerText;
+    const formError = document.getElementById('errorMessage-formError').innerText;
 
     resetErrors([idDoctorInput,idPatientInput,visitDateInput,prescriptionInput,visitDescriptionInput], [errorIdDoctor,errorIdPatient,errorVisitDate,errorPrescription,errorVisitDescription], errorsSummary);
     let valid = true;
@@ -18,13 +22,13 @@ function validateForm() {
     if(!checkRequired(idDoctorInput.value)){
         valid = false;
         idDoctorInput.classList.add("error-input");
-        errorIdDoctor.innerText = "Pole jest wymagane";
+        errorIdDoctor.innerText = reqMessage;
     }
 //Walidacja pacjenta
     if(!checkRequired(idPatientInput.value)){
         valid = false;
         idPatientInput.classList.add("error-input");
-        errorIdPatient.innerText = "Pole jest wymagane";
+        errorIdPatient.innerText = reqMessage;
     }
 //Walidacja daty
     let nowDate = new Date(), month = ''+(nowDate.getMonth()+1), day = ''+nowDate.getDay(),year= nowDate.getFullYear();
@@ -36,15 +40,15 @@ function validateForm() {
     if (!checkRequired (visitDateInput.value)) {
         valid = false;
         visitDateInput.classList.add ("error-input");
-        errorVisitDate.innerText = "Pole jest wymagane";
+        errorVisitDate.innerText = reqMessage;
     } else if (!checkDate (visitDateInput.value)) {
         valid = false;
         visitDateInput.classList.add ("error-input");
-        errorVisitDate.innerText = "Pole powinno zawierać datę w formacie yyyy-MM-dd (np. 2000-01-01) ";
+        errorVisitDate.innerText = dateErrorMessage;
     } else if (checkDateIfAfter (visitDateInput.value, nowString)) {
         valid = false;
         visitDateInput.classList. add ("error-input");
-        errorVisitDate.innerText = "Data nie może być z przyszłości";
+        errorVisitDate.innerText = dateFutureMessage;
     }
 
     // //Walidacja recepty
@@ -62,7 +66,7 @@ function validateForm() {
 
 
     if (!valid) {
-        errorsSummary.innerText = "Formularz zawiera błędy";
+        errorsSummary.innerText = formError;
     }
     return valid;
 }

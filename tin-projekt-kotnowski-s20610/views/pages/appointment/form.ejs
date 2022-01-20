@@ -4,6 +4,18 @@
     <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= appointment._id %>">
+        <div style="display: none">
+            <span id="errorMessage-required"><%= __('auth.fieldRequired') %></span>
+        </div>
+        <div style="display: none">
+            <span id="errorMessage-dateError"><%= __('auth.dateError') %></span>
+        </div>
+        <div style="display: none">
+            <span id="errorMessage-dateFutureError"><%= __('auth.dateFutureError') %></span>
+        </div>
+        <div style="display: none">
+            <span id="errorMessage-formError"><%= __('auth.formError') %></span>
+        </div>
 
         <label for="visitDate"><%= __('appointments.fields.visitDate') %>: <span class="symbol-required">*</span></label>
         <input type="text" name="visitDate" id="visitDate" placeholder="YYYY-MM-DD" value="<%= appointment.visitDate %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('visitDate')) ? 'error-input' : ''%>">
@@ -51,14 +63,14 @@
 
         <span id="errorsSummary" class="errors-text">
             <% if(validationErrors.length !== 0) {%>
-                <%= "Formularz zawiera błędy"%>
+                <%= __('auth.formError')%>
             <%}%>
         </span>
 
         <div class="form-buttons">
 
             <% if (formMode != 'showDetails') { %>
-            <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
+            <input type="submit" value="<%= __('appointments.form.edit.btnLabel')%>" class="form-button-submit"/>
             <a href="/appointments/" class="form-button-cancel"><%= __('form.actions.cancel') %></a>
             <% } else { %>
                 <a class="form-button-cancel" href="/appointments/"><%= __('form.actions.return') %></a>

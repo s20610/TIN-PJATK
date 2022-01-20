@@ -173,5 +173,15 @@
             "visitDescription": "Treść opisu wizyty"
           }
 		}
+	},
+	"auth": {
+		"loginError": "Nieprawidłowy adres email lub hasło",
+		"fieldRequired": "To pole jest wymagane",
+		"dateError": "Pole powinno zawierać datę w formacie yyyy-MM-dd (np. 2000-01-01) ",
+		"dateFutureError": "Data nie może być z przyszłości",
+		"formError": "Formularz zawiera błędy",
+		"lengthError": "Pole powinno zawierać od 2 do 60 znaków",
+		"length2Error": "Pole powinno zawierać od 2 do 120 znaków",
+		"peselError": "Pole powinno zawierać 11 cyfr"
 	}
 }

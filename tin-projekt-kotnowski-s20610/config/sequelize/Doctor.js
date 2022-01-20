@@ -41,15 +41,21 @@ const Doctor = sequelize.define('Doctor', {
             len: {
                 args: [0,60],
                 msg: "Pole powinno zawierać od 2 do 60 znaków"
-            },
-            isEmail: {
-                msg: 'Pole powinno zawierać prawidłowy adres email'
             }
         }
     },
     password: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Pole jest wymagane"
+            },
+            len: {
+                args: [2,60],
+                msg: "Pole powinno zawierać od 2 do 60 znaków"
+            }
+        }
     }
 });
 

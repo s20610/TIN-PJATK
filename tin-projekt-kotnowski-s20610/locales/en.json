@@ -26,10 +26,7 @@
 		"actions": {
 			"return": "Return",
 			"edit": "Edit",
-			"cancel": "Cancel",
-			"title": "form.actions.title",
-			"details": "form.actions.details",
-			"delete": "form.actions.delete"
+			"cancel": "Cancel"
 		}
 	},
 	"doctors": {
@@ -38,8 +35,7 @@
 			"lastName": "Last name",
 			"email": "Email",
 			"specializationId": "Specialization",
-			"password": "Password",
-			"specialization": "doctors.fields.specialization"
+			"password": "Password"
 		},
 		"list": {
 			"title": "Doctors",
@@ -97,8 +93,7 @@
 					"header": "Confirm operation",
 					"text": "Specialization updated successfully"
 				}
-			},
-			"btnLabel": "specializations.form.btnLabel"
+			}
 		}
 	},
 	"patients": {
@@ -178,11 +173,14 @@
 			}
 		}
 	},
-	"patient": {
-		"form": {
-			"add": {
-				"btnLabel": "patient.form.add.btnLabel"
-			}
-		}
+	"auth": {
+		"loginError": "Wrong email or password",
+		"fieldRequired": "This field is required",
+		"dateError": "Field should contain date in YYYY-MM-DD format",
+		"dateFutureError": "Date can't be from the future",
+		"formError": "Form contains errors",
+		"lengthError": "Field should contain 2 to 60 chars",
+		"length2Error": "Field should contain 2 to 120 chars",
+		"peselError": "Field should contain 11 digits"
 	}
 }

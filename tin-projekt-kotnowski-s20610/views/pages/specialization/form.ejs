@@ -5,11 +5,25 @@
     <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= specialization._id %>">
+        <div style="display: none">
+            <span id="errorMessage-required"><%= __('auth.fieldRequired') %></span>
+        </div>
+        <div style="display: none">
+            <span id="errorMessage-formError"><%= __('auth.formError') %></span>
+        </div>
+        <div style="display: none">
+            <span id="errorMessage-lengthError"><%= __('auth.lengthError') %></span>
+        </div>
+
         <label for="specializationName"><%= __('specializations.fields.specializationName') %>: <span class="symbol-required">*</span></label>
         <input type="text" name="specializationName" id="specializationName" placeholder="2-60" value="<%= specialization.specializationName %>" <%= (formMode === 'showDetails') ? 'disabled' : ''%>class="<%= validationErrors.find(e => e.path.includes('specializationName')) ? 'error-input' : ''%>">
         <span id="errorSpecializationName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('specializationName'))) { %>
-            <%= validationErrors.find(e => e.path.includes('specializationName')).message %>
+                <% if(validationErrors.find(e => e.path.includes('specializationName')).message.toString() === "Pole jest wymagane") { %>
+                    <%= __('auth.fieldRequired')%>
+                <%}else{%>
+                    <%= __('auth.lengthError')%>
+                <%}%>
             <% } %>
         </span>
 
@@ -22,7 +36,7 @@
         <div class="form-buttons">
             <span id="errorsSummary" class="errors-text">
                 <% if(validationErrors.length !== 0) {%>
-                    <%= "Formularz zawiera błędy"%>
+                    <%= __('auth.formError')%>
                 <%}%>
             </span>
             <% if (formMode !== 'showDetails') { %>
