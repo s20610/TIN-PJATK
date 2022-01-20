@@ -6,34 +6,36 @@
     <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= doctor._id %>">
 
-        <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= doctor.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : ''%>"/>
+        <label for="firstName"><%= __('doctors.fields.firstName') %>: <span class="symbol-required">*</span></label>
+        <input type="text" name="firstName" id="firstName" placeholder="2-60" value="<%= doctor.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : ''%>"/>
         <span id="errorFirstName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
                 <%= validationErrors.find(e => e.path.includes('firstName')).message %>
             <% } %>
         </span>
 
-        <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= doctor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : ''%>"/>
+        <label for="lastName"><%= __('doctors.fields.lastName') %>: <span class="symbol-required">*</span></label>
+        <input type="text" name="lastName" id="lastName" placeholder="2-60" value="<%= doctor.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : ''%>"/>
         <span id="errorLastName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
                 <%= validationErrors.find(e => e.path.includes('lastName')).message %>
             <% } %>
         </span>
 
-        <label for="email">Email: </label>
-        <input type="email" name="email" id="email" placeholder="Email np. tomasz@gmail.com" value="<%= doctor.email %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : ''%>">
+        <label for="email"><%= __('doctors.fields.email') %>: </label>
+        <input type="email" name="email" id="email" placeholder="tomasz@gmail.com" value="<%= doctor.email %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : ''%>">
         <span id="errorEmail" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('email'))) { %>
                 <%= validationErrors.find(e => e.path.includes('email')).message %>
             <% } %>
         </span>
 
-        <label for="specializationId">Specjalizacja: <span class="symbol-required">*</span></label>
+        <label for="specializationId"><%= __('doctors.fields.specializationId') %>: <span class="symbol-required">*</span></label>
         <select name="SpecializationId" id="specializationId" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> >
-            <% if(formMode !=='edit'){%>
-            <option value="" selected>---Wybierz specjalizację---</option>
+            <% if(formMode === 'createNew' && Object.keys(validationErrors).length === 0) {%>
+                <option value="" selected><%= __('doctors.form.chooseSpec') %></option>
+            <% } else if(formMode !== 'edit' && formMode !== 'createNew'){%>
+            <option value="" selected><%= __('doctors.form.chooseSpec') %></option>
             <%}%>
 
             <% for(let i =0; i<allSpec.length;i++) { let spec = allSpec[i];%>
@@ -48,17 +50,19 @@
             <% } %>
         </span>
 
-        <label for="password">Hasło: <span class="symbol-required">*</span></label>
-        <input type="password" name="password" id="password" placeholder="Hasło do konta" value="<%= doctor.password %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : ''%>">
+        <% if (formMode == 'createNew') {%>
+        <label for="password"><%= __('doctors.fields.password') %>: <span class="symbol-required">*</span></label>
+        <input type="password" name="password" id="password" placeholder="******" value="<%= doctor.password %>" <%= (formMode == 'showDetails' || formMode == 'edit') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : ''%>">
         <span id="errorEmail" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('password'))) { %>
                 <%= validationErrors.find(e => e.path.includes('password')).message %>
             <% } %>
         </span>
+            <% } %>
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
-                <a href="/doctors/edit/<%= doctorBefore._id %>" class="form-button-edit">Edytuj</a>
+                <a href="/doctors/edit/<%= doctorBefore._id %>" class="form-button-edit"><%= __('form.actions.edit') %></a>
             </div>
         <% } %>
         <span id="errorsSummary" class="errors-text">
@@ -68,28 +72,28 @@
         </span>
         <div class="form-buttons">
             <% if (formMode != 'showDetails') { %>
-            <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
-            <a href="/doctors/" class="form-button-cancel">Anuluj</a>
+            <input type="submit" value="<%= __('doctors.form.edit.btnLabel') %>" class="form-button-submit"/>
+            <a href="/doctors/" class="form-button-cancel"><%= __('form.actions.cancel') %></a>
             <% } else { %>
-                <a class="form-button-cancel" href="/doctors/">Powrót</a>
+                <a class="form-button-cancel" href="/doctors/"><%= __('form.actions.return') %></a>
             <%}%>
         </div>
     </form>
 
     <% if (formMode == 'showDetails' || formMode == 'edit') { %>
-        <h2>Szczegóły wizyt</h2>
+        <h2><%= __('doctors.form.appointments') %></h2>
         <table class="table-list">
             <thead>
             <tr>
-                <th>Data wizyty</th>
-                <th>Recepta</th>
-                <th>Dokumentacja wizyty</th>
+                <th><%= __('appointments.fields.visitDate') %></th>
+                <th><%= __('appointments.fields.prescription') %></th>
+                <th><%= __('appointments.fields.visitDescription') %></th>
             </tr>
             </thead>
             <tbody>
             <% if(doctorBefore.Appointments.length === 0) {%>
                 <tr>
-                    <td colspan="3">Brak wizyt dla wybranego lekarz</td>
+                    <td colspan="3"><%= __('appointments.list.noData') %></td>
                 </tr>
                 <% } %>
             <% for (let d of doctorBefore.Appointments) { %>

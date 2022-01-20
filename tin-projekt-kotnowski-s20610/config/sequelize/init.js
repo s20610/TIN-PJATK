@@ -42,9 +42,9 @@ module.exports = () => {
             if(!doctors || doctors.length === 0){
                 return Doctor.bulkCreate([
                     {firstName: 'Jan', lastName: 'Bytnar', email: 'jan.bytnar@klinika.com', SpecializationId: 4, password: passHash},
-                    {firstName: 'Tomasz', lastName: 'Wiśniewski', email: 'tomasz.wiśniewski@klinika.com', SpecializationId: 2, password: '54321'},
-                    {firstName: 'Marcin', lastName: 'Kowal', email: 'marcin.kowal@klinika.com', SpecializationId: 3, password: 'asdjjva'},
-                    {firstName: 'Anna', lastName: 'Wójcik', email: 'michal.wojcik@klinika.com', SpecializationId: 5, password: 'f23r4ga'},
+                    {firstName: 'Tomasz', lastName: 'Wiśniewski', email: 'tomasz.wiśniewski@klinika.com', SpecializationId: 2, password: passHash},
+                    {firstName: 'Marcin', lastName: 'Kowal', email: 'marcin.kowal@klinika.com', SpecializationId: 3, password: passHash},
+                    {firstName: 'Anna', lastName: 'Wójcik', email: 'michal.wojcik@klinika.com', SpecializationId: 5, password: passHash},
                 ]).then( () => {
                     return Doctor.findAll();
                 });

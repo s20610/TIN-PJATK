@@ -1,0 +1,177 @@
+{
+	"main-page": {
+		"content": "Strona główna",
+		"loginh5": "Logowanie",
+		"password": "Hasło:",
+		"loginBtn": "Zaloguj się",
+		"loginInfo": "Jesteś zalogowany jako:",
+		"logoutBtn": "Wyloguj się"
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"doctors": "Lekarze",
+		"specializations": "Specjalizacje",
+		"patients": "Pacjenci",
+		"appointments": "Wizyty"
+	},
+	"list": {
+		"actions": {
+			"title": "Akcje",
+			"details": "Szczegóły",
+			"edit": "Edytuj",
+			"delete": "Usuń"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Powrót",
+			"edit": "Edytuj",
+			"cancel": "Anuluj",
+			"title": "Akcje"
+		}
+	},
+	"doctors": {
+		"fields": {
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+			"email": "Email",
+			"specializationId": "Specjalizacja",
+			"password": "Hasło"
+		},
+		"list": {
+			"title": "Lekarze",
+			"addNew": "Dodaj nowego lekarza",
+			"noData": "Brak lekarzy w bazie",
+			"pageTitle": "Lista lekarzy"
+		},
+		"form": {
+			"appointments": "Historia wizyt",
+			"chooseSpec": "---Wybierz specializację---",
+			"add": {
+				"pageTitle": "Dodawanie lekarza",
+				"btnLabel": "Dodaj lekarza",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano lekarza"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja lekarza",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano lekarza"
+				}
+			}
+		}
+	},
+	"specializations": {
+		"fields": {
+			"specializationName": "Nazwa specjalizacji"
+		},
+		"list": {
+			"title": "Specjalizacje",
+			"addNew": "Dodaj nową specjalizację",
+			"noData": "Brak specjalizacji w bazie",
+			"pageTitle": "Lista specjalizacji"
+		},
+		"form": {
+			"appointments": "Lekarz z tą specjalizacją",
+			"tableTitle": "Przypisani lekarze",
+			"emptyTable": "Brak lekarzy z wybraną specjalizacją",
+			"add": {
+				"pageTitle": "Dodawanie specjalizacji",
+				"btnLabel": "Dodaj specjalizację",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano specjalizację"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja specjalizacji",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano specjalizację"
+				}
+			}
+		}
+	},
+	"patients": {
+		"fields": {
+			"firstName": "Imię",
+			"lastName": "Nazwisko",
+			"chronicDiseases": "Choroby przewlekłe",
+			"PESEL": "PESEL"
+		},
+		"list": {
+			"title": "Pacjenci",
+			"addNew": "Dodaj nowego pacjenta",
+			"noData": "Brak pacjentów w bazie",
+			"pageTitle": "Lista pacjentów"
+		},
+		"form": {
+			"appointments": "Historia wizyt",
+			"add": {
+				"pageTitle": "Dodawanie pacjenta",
+				"btnLabel": "Dodaj pacjenta",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano pacjenta"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja pacjenta",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano pacjenta"
+				}
+			}
+		},
+		"table": {
+			"title": "Szczegóły wizyt"
+		}
+	},
+	"appointments": {
+		"fields": {
+			"visitDate": "Data wizyty",
+			"prescription": "Recepta",
+			"visitDescription": "Opis wizyty",
+			"doctor": "Lekarz",
+			"patient": "Pacjent",
+          "chooseDoctor": "---Wybierz lekarza---",
+          "choosePatient": "---Wybierz pacjenta---"
+		},
+		"list": {
+			"title": "Wizyty",
+			"addNew": "Dodaj nową wizytę",
+			"noData": "Brak wizyt w bazie",
+			"pageTitle": "Lista wizyt",
+			"noDoctor": "Lekarz nie występuje w bazie",
+			"noPatient": "Pacjent nie wystepuje w bazie"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Dodawanie wizyty",
+				"btnLabel": "Dodaj wizytę",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano wizytę"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja wizyty",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano wizytę"
+				}
+			},
+          "placeholder": {
+            "prescription": "Treść recepty",
+            "visitDescription": "Treść opisu wizyty"
+          }
+		}
+	}
+}

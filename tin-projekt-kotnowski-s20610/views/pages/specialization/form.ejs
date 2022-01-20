@@ -5,8 +5,8 @@
     <h2><%= pageTitle %></h2>
     <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= specialization._id %>">
-        <label for="specializationName">Nazwa specjalizacji: <span class="symbol-required">*</span></label>
-        <input type="text" name="specializationName" id="specializationName" placeholder="2-60 znaków" value="<%= specialization.specializationName %>" <%= (formMode === 'showDetails') ? 'disabled' : ''%>class="<%= validationErrors.find(e => e.path.includes('specializationName')) ? 'error-input' : ''%>">
+        <label for="specializationName"><%= __('specializations.fields.specializationName') %>: <span class="symbol-required">*</span></label>
+        <input type="text" name="specializationName" id="specializationName" placeholder="2-60" value="<%= specialization.specializationName %>" <%= (formMode === 'showDetails') ? 'disabled' : ''%>class="<%= validationErrors.find(e => e.path.includes('specializationName')) ? 'error-input' : ''%>">
         <span id="errorSpecializationName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('specializationName'))) { %>
             <%= validationErrors.find(e => e.path.includes('specializationName')).message %>
@@ -15,7 +15,7 @@
 
         <% if (formMode === 'showDetails') { %>
             <div class="section-buttons">
-                <a href="/specializations/edit/<%= specialization._id %>" class="form-button-edit">Edytuj</a>
+                <a href="/specializations/edit/<%= specialization._id %>" class="form-button-edit"><%= __('form.actions.edit') %></a>
             </div>
         <% } %>
 
@@ -26,27 +26,27 @@
                 <%}%>
             </span>
             <% if (formMode !== 'showDetails') { %>
-            <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
-            <a href="/specializations/" class="form-button-cancel">Anuluj</a>
+            <input type="submit" value="<%= __('specializations.form.add.btnLabel') %>" class="form-button-submit"/>
+            <a href="/specializations/" class="form-button-cancel"><%= __('form.actions.cancel') %></a>
             <% } else { %>
-                <a class="form-button-cancel" href="/specializations/">Powrót</a>
+                <a class="form-button-cancel" href="/specializations/"><%= __('form.actions.return') %></a>
             <%}%>
         </div>
 
     </form>
     <% if (formMode === 'showDetails' || formMode === 'edit') { %>
-        <h2>Przypisani lekarze</h2>
+        <h2><%= __('specializations.form.tableTitle') %></h2>
         <table class="table-list">
             <thead>
             <tr>
-                <th>Lekarz z tą specjalizacją</th>
+                <th><%= __('specializations.form.appointments') %></th>
             </tr>
             </thead>
             <tbody>
 
             <% if(specializationBeforeData.Doctors.length === 0) {%>
                 <tr>
-                    <td colspan="3">Brak lekarzy z wybraną specjalizacją</td>
+                    <td colspan="3"><%= __('specializations.form.emptyTable') %></td>
                 </tr>
             <% } %>
             <% for (let s of specializationBeforeData.Doctors) { %>

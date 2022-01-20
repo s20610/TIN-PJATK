@@ -1,0 +1,188 @@
+{
+	"main-page": {
+		"content": "Main page",
+		"loginh5": "Login",
+		"password": "Password:",
+		"loginBtn": "Log in",
+		"loginInfo": "You are logged in as:",
+		"logoutBtn": "Log out"
+	},
+	"nav": {
+		"main-page": "Main page",
+		"doctors": "Doctors",
+		"specializations": "Specializations",
+		"patients": "Patients",
+		"appointments": "Appointments"
+	},
+	"list": {
+		"actions": {
+			"title": "Actions",
+			"details": "Details",
+			"edit": "Edit",
+			"delete": "Delete"
+		}
+	},
+	"form": {
+		"actions": {
+			"return": "Return",
+			"edit": "Edit",
+			"cancel": "Cancel",
+			"title": "form.actions.title",
+			"details": "form.actions.details",
+			"delete": "form.actions.delete"
+		}
+	},
+	"doctors": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+			"email": "Email",
+			"specializationId": "Specialization",
+			"password": "Password",
+			"specialization": "doctors.fields.specialization"
+		},
+		"list": {
+			"title": "Doctors",
+			"addNew": "Add new doctor",
+			"noData": "No doctors in database",
+			"pageTitle": "Doctors list"
+		},
+		"form": {
+			"appointments": "Appointments history",
+			"chooseSpec": "---Choose specialization---",
+			"add": {
+				"pageTitle": "Adding doctors",
+				"btnLabel": "Add doctor",
+				"confirm": {
+					"header": "Confirm operation",
+					"text": "Doctor added successfully"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edit doctor",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirm operation",
+					"text": "Doctor updated successfully"
+				}
+			}
+		}
+	},
+	"specializations": {
+		"fields": {
+			"specializationName": "Specialization name"
+		},
+		"list": {
+			"title": "Specializations",
+			"addNew": "Add new specialization",
+			"noData": "No specializations in database",
+			"pageTitle": "Specializations list"
+		},
+		"form": {
+			"appointments": "Doctor with this specialization",
+			"tableTitle": "Assigned doctors",
+			"emptyTable": "No doctors with this specialization",
+			"add": {
+				"pageTitle": "Adding specialization",
+				"btnLabel": "Add specialization",
+				"confirm": {
+					"header": "Confirm operation",
+					"text": "Specialization added successfully"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edit specialization",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirm operation",
+					"text": "Specialization updated successfully"
+				}
+			},
+			"btnLabel": "specializations.form.btnLabel"
+		}
+	},
+	"patients": {
+		"fields": {
+			"firstName": "First name",
+			"lastName": "Last name",
+			"chronicDiseases": "Chronic diseases",
+			"PESEL": "PESEL"
+		},
+		"list": {
+			"title": "Patients",
+			"addNew": "Add new patients",
+			"noData": "No patients in database",
+			"pageTitle": "Patients list"
+		},
+		"form": {
+			"appointments": "Appointments history",
+			"add": {
+				"pageTitle": "Adding patients",
+				"btnLabel": "Add patient",
+				"confirm": {
+					"header": "Confirm operation",
+					"text": "Patients added successfully"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edit patient",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirm operation",
+					"text": "Patient updated successfully"
+				}
+			}
+		},
+		"table": {
+			"title": "Visit details"
+		}
+	},
+	"appointments": {
+		"fields": {
+			"visitDate": "Visit date",
+			"prescription": "Prescription",
+			"visitDescription": "Visit description",
+			"doctor": "Doctor",
+			"patient": "Patient",
+			"chooseDoctor": "---Choose doctor---",
+			"choosePatient": "---Choose patient---"
+		},
+		"list": {
+			"title": "Appointments",
+			"addNew": "Add new appointment",
+			"noData": "No appointments in database",
+			"pageTitle": "Appointments list",
+			"noDoctor": "No such doctor in db",
+			"noPatient": "No such patient in db"
+		},
+		"form": {
+			"add": {
+				"pageTitle": "Adding appointments",
+				"btnLabel": "Add appointment",
+				"confirm": {
+					"header": "Confirm operation",
+					"text": "Appointment added successfully"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edit appointment",
+				"btnLabel": "Save changes",
+				"confirm": {
+					"header": "Confirm operation",
+					"text": "Appointment updated successfully"
+				}
+			},
+			"placeholder": {
+				"prescription": "Prescription contents",
+				"visitDescription": "Visit description contents"
+			}
+		}
+	},
+	"patient": {
+		"form": {
+			"add": {
+				"btnLabel": "patient.form.add.btnLabel"
+			}
+		}
+	}
+}

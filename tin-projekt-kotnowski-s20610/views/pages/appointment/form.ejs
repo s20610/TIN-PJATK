@@ -5,14 +5,14 @@
     <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= appointment._id %>">
 
-        <label for="visitDate">Data wizyty: <span class="symbol-required">*</span></label>
+        <label for="visitDate"><%= __('appointments.fields.visitDate') %>: <span class="symbol-required">*</span></label>
         <input type="text" name="visitDate" id="visitDate" placeholder="YYYY-MM-DD" value="<%= appointment.visitDate %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('visitDate')) ? 'error-input' : ''%>">
         <span id="errorVisitDate" class="errors-text"></span>
 
-        <label for="doctorId">Lekarz przyjmujący: <span class="symbol-required">*</span></label>
+        <label for="doctorId"><%= __('appointments.fields.doctor') %>: <span class="symbol-required">*</span></label>
         <select name="DoctorId" id="doctorId" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('doctorId')) ? 'error-input' : ''%>">
            <% if(formMode !== 'edit') {%>
-            <option value="" selected>---Wybierz lekarza---</option>
+            <option value="" selected><%= __('appointments.fields.chooseDoctor') %></option>
             <%}%>
 
             <% for(let i =0; i<allDoctors.length;i++) { let doc = allDoctors[i];%>
@@ -22,10 +22,10 @@
         </select>
         <span id="errorDoctor" class="errors-text"></span>
 
-        <label for="patientId">Pacjent: <span class="symbol-required">*</span></label>
+        <label for="patientId"><%= __('appointments.fields.patient') %>: <span class="symbol-required">*</span></label>
         <select name="PatientId" id="patientId" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('patientId')) ? 'error-input' : ''%>">
             <% if(formMode !== 'edit') {%>
-            <option value="" selected>---Wybierz pacjenta---</option>
+            <option value="" selected><%= __('appointments.fields.choosePatient') %></option>
                 <%}%>
 
             <% for(let i =0; i<allPatients.length;i++) { let patient = allPatients[i];%>
@@ -35,17 +35,17 @@
         </select>
         <span id="errorPatient" class="errors-text"></span>
 
-        <label for="prescription">Recepta: </label>
-        <input type="text" name="prescription" id="prescription" placeholder="Treść recepty" value="<%= appointment.prescription %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('prescription')) ? 'error-input' : ''%>">
+        <label for="prescription"><%= __('appointments.fields.prescription') %>: </label>
+        <input type="text" name="prescription" id="prescription" placeholder="<%= __('appointments.form.placeholder.prescription') %>" value="<%= appointment.prescription %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('prescription')) ? 'error-input' : ''%>">
         <span id="errorPrescription" class="errors-text"></span>
 
-        <label for="visitDescription">Opis wizyty: </label>
-        <textarea id="visitDescription" name="visitDescription" rows="5" cols="40" placeholder="Treść opisu wizyty" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('visitDescription')) ? 'error-input' : ''%>"><%= appointment.visitDescription %></textarea>
+        <label for="visitDescription"><%= __('appointments.fields.visitDescription') %>: </label>
+        <textarea id="visitDescription" name="visitDescription" rows="5" cols="40" placeholder="<%= __('appointments.form.placeholder.visitDescription') %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('visitDescription')) ? 'error-input' : ''%>"><%= appointment.visitDescription %></textarea>
         <span id="errorVisitDescription" class="errors-text"></span>
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
-                <a href="/appointments/edit/<%= appointmentBefore._id %>" class="form-button-edit">Edytuj</a>
+                <a href="/appointments/edit/<%= appointmentBefore._id %>" class="form-button-edit"><%= __('form.actions.edit') %></a>
             </div>
         <% } %>
 
@@ -59,9 +59,9 @@
 
             <% if (formMode != 'showDetails') { %>
             <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
-            <a href="/appointments/" class="form-button-cancel">Anuluj</a>
+            <a href="/appointments/" class="form-button-cancel"><%= __('form.actions.cancel') %></a>
             <% } else { %>
-                <a class="form-button-cancel" href="/appointments/">Powrót</a>
+                <a class="form-button-cancel" href="/appointments/"><%= __('form.actions.return') %></a>
             <%}%>
         </div>
     </form>

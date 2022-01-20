@@ -1,7 +1,7 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Lista lekarzy</h2>
-    <p>Brak rekordów do wyświetlenia</p>
-    <p><a href="/doctors/add" class="button-add">Dodaj nowego lekarza</a> </p>
+    <h2><%= __('doctors.list.pageTitle') %></h2>
+    <p><%= __('doctors.list.noData') %></p>
+    <p><a href="/doctors/add" class="button-add"><%= __('doctors.list.addNew') %></a> </p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

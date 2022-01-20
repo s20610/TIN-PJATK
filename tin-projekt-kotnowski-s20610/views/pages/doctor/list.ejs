@@ -1,13 +1,13 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-  <h2>Lista lekarzy</h2>
+  <h2><%= __('doctors.list.pageTitle') %></h2>
   <div style="overflow-x: auto">
   <table class="table-list">
     <tr>
-      <th>Imię</th>
-      <th>Nazwisko</th>
-      <th class="doctor-email-column">E-mail</th>
-      <th>Akcje</th>
+      <th><%= __('doctors.fields.firstName') %></th>
+      <th><%= __('doctors.fields.lastName') %></th>
+      <th class="doctor-email-column"><%= __('doctors.fields.email') %></th>
+      <th><%= __('list.actions.title') %></th>
     </tr>
     <tbody>
     <% for(let doctor of doctors){%>
@@ -18,13 +18,13 @@
       <td>
         <ul class="list-actions">
           <li>
-            <a href="/doctors/details/<%=doctor._id%>" class="list-actions-button-details">Szczegóły</a>
+            <a href="/doctors/details/<%=doctor._id%>" class="list-actions-button-details"><%= __('list.actions.details') %></a>
           </li>
           <li>
-            <a href="/doctors/edit/<%=doctor._id%>" class="list-actions-button-edit">Edytuj</a>
+            <a href="/doctors/edit/<%=doctor._id%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
           </li>
           <li>
-            <a href="/doctors/delete/<%=doctor._id%>" class="list-actions-button-delete">Usuń</a>
+            <a href="/doctors/delete/<%=doctor._id%>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
           </li>
         </ul>
       </td>
@@ -33,6 +33,6 @@
     </tbody>
   </table>
   </div>
-  <p><a href="/doctors/add" class="button-add">Dodaj nowego lekarza</a> </p>
+  <p><a href="/doctors/add" class="button-add"><%= __('doctors.list.addNew') %></a> </p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

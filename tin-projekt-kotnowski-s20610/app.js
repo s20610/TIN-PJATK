@@ -16,6 +16,14 @@ const specializationApiRouter = require('./routes/api/SpecializationApiRoute');
 const appointmentApiRouter = require('./routes/api/AppointmentApiRoute');
 const session = require('express-session');
 const authUtils = require("./util/authUtil");
+const i18n = require('i18n');
+i18n.configure({
+  locales: ['pl', 'en'], // języki dostępne w aplikacji. Dla każdego z nich należy utworzyć osobny słownik
+  directory: path.join(__dirname, 'locales'), // ścieżka do katalogu, w którym znajdują się słowniki
+  objectNotation: true, // umożliwia korzstanie z zagnieżdżonych kluczy w notacji obiektowej
+  cookie: 'klinika-lang', //nazwa cookies, które nasza aplikacja będzie wykorzystywać do przechowania informacji o
+  //języku aktualnie wybranym przez użytkownika
+});
 
 var app = express();
 
@@ -27,6 +35,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cookieParser('secret'));
+app.use(i18n.init);
+app.use(cookieParser('klinika-lang'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'my_secret_password',
@@ -39,7 +50,13 @@ app.use((req,res,next) => {
     res.locals.loginError = undefined;
   }
   next();
-})
+});
+app.use((req, res, next) => {
+  if(!res.locals.lang) {
+    res.locals.lang = req.cookies['klinika-lang'];
+  }
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/doctors', authUtils.permitAuthenticatedUser,doctorRouter);

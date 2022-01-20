@@ -1,7 +1,7 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <h2>Lista pacjentów</h2>
-    <p>Brak rekordów do wyświetlenia</p>
-    <p><a href="/patients/add" class="button-add">Dodaj nowego pacjenta</a> </p>
+    <h2><%= __('patients.list.pageTitle') %></h2>
+    <p><%= __('patients.list.noData') %></p>
+    <p><a href="/patients/add" class="button-add"><%= __('patients.list.addNew') %></a> </p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

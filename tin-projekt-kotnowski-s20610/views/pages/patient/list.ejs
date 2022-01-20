@@ -1,11 +1,11 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-  <h2>Lista pacjentów</h2>
+  <h2><%= __('patients.list.pageTitle') %></h2>
   <table class="table-list">
     <tr>
-      <th>Imię</th>
-      <th>Nazwisko</th>
-      <th>Akcje</th>
+      <th><%= __('patients.fields.firstName') %></th>
+      <th><%= __('patients.fields.lastName') %></th>
+      <th><%= __('list.actions.title') %></th>
     </tr>
     <tbody>
     <% for(let patient of patients){%>
@@ -15,13 +15,13 @@
       <td>
         <ul class="list-actions">
           <li>
-            <a href="/patients/details/<%=patient._id%>" class="list-actions-button-details">Szczegóły</a>
+            <a href="/patients/details/<%=patient._id%>" class="list-actions-button-details"><%= __('list.actions.details') %></a>
           </li>
           <li>
-            <a href="/patients/edit/<%=patient._id%>" class="list-actions-button-edit">Edytuj</a>
+            <a href="/patients/edit/<%=patient._id%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
           </li>
           <li>
-            <a href="/patients/delete/<%=patient._id%>" class="list-actions-button-delete">Usuń</a>
+            <a href="/patients/delete/<%=patient._id%>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
           </li>
         </ul>
       </td>
@@ -29,6 +29,6 @@
     <%}%>
     </tbody>
   </table>
-  <p><a href="/patients/add" class="button-add">Dodaj nowego pacjenta</a> </p>
+  <p><a href="/patients/add" class="button-add"><%= __('patients.list.addNew') %></a> </p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

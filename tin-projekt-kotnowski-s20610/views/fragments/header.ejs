@@ -2,7 +2,7 @@
 <html lang="pl-PL">
 <head>
     <meta charset="UTF-8">
-    <title>Klinika Demo</title>
+    <title>Klinika Zdrowia</title>
     <link rel="stylesheet" href="/css/style.css" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,17 +12,19 @@
 </head>
 <body>
 <header>
-    <h1>Klinika</h1>
+    <h1>Klinika Zdrowia</h1>
     <img src="/images/logo.png" alt="Logo Kliniki">
 </header>
 <nav>
     <ul>
-        <li><a href="/" class="<%= navLocation === 'main' ? 'active' : ''%>">Strona główna</a></li>
+        <li><a href="/" class="<%= navLocation === 'main' ? 'active' : ''%>"><%= __('nav.main-page') %></a></li>
         <% if(loggedUser) { %>
-        <li><a href="/doctors" class="<%= navLocation === 'doctor' ? 'active' : ''%>">Lekarze</a></li>
-        <li><a href="/patients/" class="<%= navLocation === 'patient' ? 'active' : ''%>">Pacjenci</a></li>
-        <li><a href="/specializations/" class="<%= navLocation === 'specialization' ? 'active' : ''%>">Specjalizacje</a></li>
-        <li><a href="/appointments/" class="<%= navLocation === 'appointment' ? 'active' : ''%>">Wizyty</a></li>
+        <li><a href="/doctors" class="<%= navLocation === 'doctor' ? 'active' : ''%>"><%= __('nav.doctors') %></a></li>
+        <li><a href="/patients/" class="<%= navLocation === 'patient' ? 'active' : ''%>"><%= __('nav.patients') %></a></li>
+        <li><a href="/specializations/" class="<%= navLocation === 'specialization' ? 'active' : ''%>"><%= __('nav.specializations') %></a></li>
+        <li><a href="/appointments/" class="<%= navLocation === 'appointment' ? 'active' : ''%>"><%= __('nav.appointments') %></a></li>
         <% } %>
+        <li><a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : ''%>">PL</a></li>
+        <li><a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : ''%>">EN</a></li>
     </ul>
 </nav>

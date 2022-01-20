@@ -1,12 +1,12 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-  <h2>Lista wizyt</h2>
+  <h2><%= __('appointments.list.pageTitle') %></h2>
   <table class="table-list">
     <tr>
-      <th>Data wizyty</th>
-      <th>Lekarz</th>
-      <th>Pacjent</th>
-      <th>Akcje</th>
+      <th><%= __('appointments.fields.visitDate') %></th>
+      <th><%= __('appointments.fields.doctor') %></th>
+      <th><%= __('appointments.fields.patient') %></th>
+      <th><%= __('list.actions.title') %></th>
     </tr>
     <tbody>
     <% for(let appointment of appointments){%>
@@ -15,23 +15,23 @@
       <% if(appointment.Doctor !== null) { %>
       <td><%= appointment.Doctor.firstName+' '+appointment.Doctor.lastName%></td>
         <%} else{%>
-      <td><%= "Lekarz nie występuje w bazie"%></td>
+      <td><%= __('appointments.list.noDoctor') %></td>
       <%}%>
       <% if(appointment.Patient !== null) { %>
       <td><%= appointment.Patient.firstName+' '+appointment.Patient.lastName%></td>
       <%} else{%>
-        <td><%= "Pacjent nie występuje w bazie"%></td>
+        <td><%= __('appointments.list.noPatient') %></td>
       <%}%>
       <td>
         <ul class="list-actions">
           <li>
-            <a href="/appointments/details/<%=appointment._id%>" class="list-actions-button-details">Szczegóły</a>
+            <a href="/appointments/details/<%=appointment._id%>" class="list-actions-button-details"><%= __('list.actions.details') %></a>
           </li>
           <li>
-            <a href="/appointments/edit/<%=appointment._id%>" class="list-actions-button-edit">Edytuj</a>
+            <a href="/appointments/edit/<%=appointment._id%>" class="list-actions-button-edit"><%= __('list.actions.edit') %></a>
           </li>
           <li>
-            <a href="/appointments/delete/<%=appointment._id%>" class="list-actions-button-delete">Usuń</a>
+            <a href="/appointments/delete/<%=appointment._id%>" class="list-actions-button-delete"><%= __('list.actions.delete') %></a>
           </li>
         </ul>
       </td>
@@ -39,6 +39,6 @@
     <%}%>
     </tbody>
   </table>
-  <p><a href="/appointments/add" class="button-add">Dodaj nową wizytę</a> </p>
+  <p><a href="/appointments/add" class="button-add"><%= __('appointments.list.addNew') %></a> </p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

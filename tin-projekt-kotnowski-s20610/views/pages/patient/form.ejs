@@ -5,32 +5,32 @@
     <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="validateForm();">
         <input type="hidden" name="_id" value="<%= patient._id %>">
 
-        <label for="firstName">Imię: <span class="symbol-required">*</span></label>
-        <input required type="text" name="firstName" id="firstName" placeholder="2-60 znaków" value="<%= patient.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : ''%>"/>
+        <label for="firstName"><%= __('patients.fields.firstName') %>: <span class="symbol-required">*</span></label>
+        <input required type="text" name="firstName" id="firstName" placeholder="2-60" value="<%= patient.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('firstName')) ? 'error-input' : ''%>"/>
         <span id="errorFirstName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('firstName'))) { %>
                 <%= validationErrors.find(e => e.path.includes('firstName')).message %>
             <% } %>
         </span>
 
-        <label for="lastName">Nazwisko: <span class="symbol-required">*</span></label>
-        <input required type="text" name="lastName" id="lastName" placeholder="2-60 znaków" value="<%= patient.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : ''%>"/>
+        <label for="lastName"><%= __('patients.fields.lastName') %>: <span class="symbol-required">*</span></label>
+        <input required type="text" name="lastName" id="lastName" placeholder="2-60" value="<%= patient.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('lastName')) ? 'error-input' : ''%>"/>
         <span id="errorLastName" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('lastName'))) { %>
                 <%= validationErrors.find(e => e.path.includes('lastName')).message %>
             <% } %>
         </span>
 
-        <label for="chronicDiseases">Choroby przewlekłe: </label>
-        <textarea id="chronicDiseases" name="chronicDiseases" rows="5" cols="40" placeholder="2-120 znaków" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('chronicDiseases')) ? 'error-input' : ''%>"><%= patient.chronicDiseases %></textarea>
+        <label for="chronicDiseases"><%= __('patients.fields.chronicDiseases') %>: </label>
+        <textarea id="chronicDiseases" name="chronicDiseases" rows="5" cols="40" placeholder="2-120" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('chronicDiseases')) ? 'error-input' : ''%>"><%= patient.chronicDiseases %></textarea>
         <span id="errorChronicDiseases" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('chronicDiseases'))) { %>
                 <%= validationErrors.find(e => e.path.includes('chronicDiseases')).message %>
             <% } %>
         </span>
 
-        <label for="PESEL">Pesel: <span class="symbol-required">*</span></label>
-        <input required type="text" name="PESEL" id="PESEL" placeholder="11 cyfr" value="<%= patient.PESEL %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('PESEL')) ? 'error-input' : ''%>"/>
+        <label for="PESEL"><%= __('patients.fields.PESEL') %>: <span class="symbol-required">*</span></label>
+        <input required type="text" name="PESEL" id="PESEL" value="<%= patient.PESEL %>" <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('PESEL')) ? 'error-input' : ''%>"/>
         <span id="errorPesel" class="errors-text">
             <% if (validationErrors.find(e => e.path.includes('PESEL'))) { %>
                 <%= validationErrors.find(e => e.path.includes('PESEL')).message %>
@@ -39,7 +39,7 @@
 
         <% if (formMode == 'showDetails') { %>
             <div class="section-buttons">
-                <a href="/patients/edit/<%= patient._id %>" class="form-button-edit">Edytuj</a>
+                <a href="/patients/edit/<%= patient._id %>" class="form-button-edit"><%= __('form.actions.edit') %></a>
             </div>
         <% } %>
 
@@ -51,25 +51,25 @@
 
         <div class="form-buttons">
             <% if (formMode != 'showDetails') { %>
-            <input type="submit" value="<%=btnLabel%>" class="form-button-submit"/>
-            <a href="/patients/" class="form-button-cancel">Anuluj</a>
+            <input type="submit" value="<%= __('patients.form.add.btnLabel') %>" class="form-button-submit"/>
+            <a href="/patients/" class="form-button-cancel"><%= __('form.actions.cancel') %></a>
             <% } else { %>
-                <a class="form-button-cancel" href="/patients/">Powrót</a>
+                <a class="form-button-cancel" href="/patients/"><%= __('form.actions.return') %></a>
             <%}%>
         </div>
     </form>
     <% if (formMode == 'showDetails' || formMode == 'edit') { %>
-        <h2>Szczegóły wizyt</h2>
+        <h2><%= __('patients.table.title') %></h2>
         <table class="table-list">
             <tr>
-                <th>Data wizyty</th>
-                <th>Recepta</th>
-                <th>Dokumentacja wizyty</th>
+                <th><%= __('appointments.fields.visitDate') %></th>
+                <th><%= __('appointments.fields.prescription') %></th>
+                <th><%= __('appointments.fields.visitDescription') %></th>
             </tr>
             <tbody>
-            <% if(patientBefore.Appointments.length === 0) {%>
+            <% if(patientBefore.Appointments.length === 0) { %>
                 <tr>
-                    <td colspan="3">Brak wizyt dla wybranego pacjenta</td>
+                    <td colspan="3"><%= __('appointments.list.noData') %></td>
                 </tr>
             <% } %>
 
